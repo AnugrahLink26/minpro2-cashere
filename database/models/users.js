@@ -38,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     urlPhotoProfle: {
       type: DataTypes.STRING
+    },
+    loginAttemp: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
     }
   }, {
     sequelize,
