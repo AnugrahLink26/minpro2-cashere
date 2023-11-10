@@ -7,14 +7,20 @@ import { SearchBar } from "../components/searchBar";
 export const HomePage = () => {
   return (
     <Grid
-      templateAreas={`"nav header header"
+      templateAreas={{
+        base: `"nav header header"
                   "nav main footer"
                   "nav main footer"
-                  `}
-      gridTemplateRows={{base:"0px",md:"70px 1fr 50px"}}
+                  `,
+      }}
+      gridTemplateRows={{
+        base: "0px",
+        md: "70px 1fr 50px",
+        lg: "55px 1fr",
+      }}
       gridTemplateColumns={{
-        base: "0px 1fr 100px",
-        md: "90px 1fr 300px ",
+        base: "0% 1fr",
+        md: "130px 1fr 250px ",
         lg: "150px 1fr 300px",
       }}
     >
@@ -33,6 +39,7 @@ export const HomePage = () => {
         display={{ base: "none", md: "block" }}
         as={GridItem}
         area={"nav"}
+        w={{ base: "100vh", md: "15vw", lg: "12vw" }}
         h={"100vh"}
         position={"sticky"}
         top={"0"}
@@ -40,7 +47,12 @@ export const HomePage = () => {
       >
         <Sidebar />
       </Box>
-      <Box as={GridItem} area={"main"} h={"100vh"}>
+      <Box
+        as={GridItem}
+        area={"main"}
+        w={{ base: "100vw", md: "50vw", lg: "full" }}
+        h={"100vh"}
+      >
         <OrderMenu />
       </Box>
       <Box
@@ -49,7 +61,7 @@ export const HomePage = () => {
         area={"footer"}
         h={"87vh"}
         position={"sticky"}
-        top={"70px"}
+        top={"55px"}
       >
         <CheckOut />
       </Box>

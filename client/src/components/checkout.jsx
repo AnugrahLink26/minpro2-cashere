@@ -12,21 +12,21 @@ import pizza from "../assets/pizza.webp";
 
 export const CheckOut = () => {
   return (
-    <Flex flexDirection={"column"}>
+    <Flex bg={"white"} flexDirection={"column"}>
       <Flex
         borderLeft={"1px"}
         flexDirection={"column"}
         borderColor={"gray.200"}
         h={"65vh"}
       >
-        <Text mt={"5%"} ml={"8%"} fontWeight={"bold"}>
+        <Text mt={{ md: "20%", lg: "5%" }} ml={"8%"} fontWeight={"bold"}>
           Current Order
         </Text>
 
         <Grid w={"84%"} mx={"auto"} mt={"2%"} rowGap={"10px"}>
           <Flex
             as={GridItem}
-            w={"250px"}
+            w={{ md: "210px", lg: "250px" }}
             bg={"gray.200"}
             py={"10px"}
             pl={"10px"}
@@ -49,7 +49,7 @@ export const CheckOut = () => {
         <Grid w={"84%"} mx={"auto"} mt={"5%"} rowGap={"10px"}>
           <Flex
             as={GridItem}
-            w={"250px"}
+            w={{ md: "210px", lg: "250px" }}
             bg={"gray.200"}
             py={"10px"}
             pl={"10px"}
@@ -72,7 +72,7 @@ export const CheckOut = () => {
         <Grid w={"84%"} mx={"auto"} mt={"5%"} rowGap={"10px"}>
           <Flex
             as={GridItem}
-            w={"250px"}
+            w={{ md: "210px", lg: "250px" }}
             bg={"gray.200"}
             py={"10px"}
             pl={"10px"}
@@ -95,7 +95,7 @@ export const CheckOut = () => {
         <Grid w={"84%"} mx={"auto"} mt={"5%"} rowGap={"10px"}>
           <Flex
             as={GridItem}
-            w={"250px"}
+            w={{ md: "210px", lg: "250px" }}
             bg={"gray.200"}
             py={"10px"}
             pl={"10px"}

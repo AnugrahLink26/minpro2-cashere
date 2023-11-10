@@ -8,7 +8,7 @@ import logo1 from "../assets/logo1.png";
 
 export const Sidebar = () => {
   return (
-    <Grid h={"100vh"}>
+    <Grid bg={"white"} h={"100vh"}>
       {/* Sidebar */}
       <Box borderRight={"1px"} borderColor={"gray.200"}>
         <Container
