@@ -1,8 +1,8 @@
+import { HomePage } from "./pages/homePage";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setData } from "./redux/userSlice";
-import { HomeTest } from "./Test/HomeTest";
 
 function App() {
   const token = localStorage.getItem("token")
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div>
-      <HomeTest/>
+      <HomePage />
     </div>
   );
 }
