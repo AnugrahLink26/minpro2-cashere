@@ -78,7 +78,7 @@ module.exports =
                 id: checkLogin.id
             }
 
-            const token = jwt.sign(payload, 'Acarakeun')
+            const token = jwt.sign(payload, process.env.TOKEN_KEY)
 
             res.status(200).send({
                 token,

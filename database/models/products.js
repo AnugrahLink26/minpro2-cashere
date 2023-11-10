@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Products.belongsTo(models.Users),
+      Products.belongsToMany(models.Users, { through: models.Users_Products }),
       Products.belongsTo(models.ProductCategories),
       Products.hasMany(models.TransactionDetails)
     }
@@ -26,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     productPrice: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    productStock: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
