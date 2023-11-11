@@ -9,15 +9,17 @@ import {
   InputLeftElement,
   InputRightElement,
   Button,
+  Divider
 } from "@chakra-ui/react";
-
-import iconPink from "../assets/iconPink.jpg";
 
 import { AiOutlineSearch } from "react-icons/ai";
 import { CiFilter } from "react-icons/ci";
 import { GrPowerReset } from "react-icons/gr";
-import { LuPencilLine } from "react-icons/lu";
+import { useSelector } from "react-redux";
+
 export const SearchBar = () => {
+  const user = useSelector((state) => state.user.value);
+
   return (
     <Flex
       bg={"white"}
@@ -55,50 +57,6 @@ export const SearchBar = () => {
           #14802
         </Text>
       </Flex>
-      <Button
-        bg={"white"}
-        border={"1px"}
-        borderColor={"gray.300"}
-        columnGap={"10px"}
-        mt={"1.4%"}
-        ml={"2%"}
-      >
-        <GrPowerReset />
-        <Text fontWeight={"normal"} fontSize={"sm"}>
-          Reset Order
-        </Text>
-      </Button>
-      <Button
-        bg={"white"}
-        border={"1px"}
-        borderColor={"gray.300"}
-        columnGap={"10px"}
-        mt={"1.4%"}
-        ml={"1%"}
-      >
-        <LuPencilLine />
-        <Text fontWeight={"normal"} fontSize={"sm"}>
-          Create a note
-        </Text>
-      </Button>
-
-      <Box
-        w={"24px"}
-        h={"8vh"}
-        mt={"0.9%"}
-        borderRight={"1px"}
-        borderColor={"gray.300"}
-      ></Box>
-
-      <Box mt={"1.1%"} ml={"8%"}>
-        <Flex alignItems={"center"}>
-          <Image src={iconPink} w={"40px"} h={"40px"} rounded={"full"} />
-          <Flex ml={"10px"} flexDirection={"column"}>
-            <Text fontWeight={"bold"}>Gulugulu</Text>
-            <Text fontSize={"sm"}>Mon, 12 Jan</Text>
-          </Flex>
-        </Flex>
-      </Box>
     </Flex>
   );
 };
