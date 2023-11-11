@@ -12,19 +12,19 @@ export const HomePage = () => {
   
   return (
     <Grid
-      templateAreas={`"nav header profile"
+      templateAreas={`"nav header header"
                   "nav main footer"
                   "nav main footer"
                   `}
       gridTemplateRows={{
         base:"0px",
-        md:"70px 1fr 50px"
+        md:"70px 1fr 50px",
+        lg: "55px 1fr",                
       }}
       gridTemplateColumns={{
-        base: "0px 1fr 100px",
-        sm: "50px 1fr 200px",
-        md: "100px 1fr 300px",
-        lg: "150px 1fr 400px",
+        base: "0px 1fr",
+        md: "130px 1fr 250px ",
+        lg: "150px 1fr 300px",
         xl: "200px 1fr 500px",
       }}
     >
@@ -46,14 +46,22 @@ export const HomePage = () => {
         borderBottom={"1px"} 
         borderColor={"gray.200"}
         as={GridItem}
-        area={"profile"}
+        area={"nav"}
+        w={{ base: "100vh", md: "15vw", lg: "12vw" }}
+        h={"100vh"}
         position={"sticky"}
         zIndex={1}
       >
-        <Divider orientation='vertical' my={5}/>
-        <Box >
-          <NavProfile />
-        </Box>
+
+        <Sidebar />
+      </Box>
+      <Box
+        as={GridItem}
+        area={"main"}
+        w={{ base: "100vw", md: "50vw", lg: "full" }}
+        h={"100vh"}
+      >
+        <OrderMenu />
       </Box>
       <Box
         display={{ base: "none", md: "block" }}
@@ -61,8 +69,7 @@ export const HomePage = () => {
         area={"nav"}
         h={"100vh"}
         position={"sticky"}
-        top={"0"}
-        zIndex={1}
+        top={"55px"}
         borderRight={"1px"}
         borderColor={"gray.200"}
       >

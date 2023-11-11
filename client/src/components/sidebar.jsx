@@ -26,7 +26,7 @@ export const Sidebar = () => {
     }
   };
   return (
-    <Grid h={"100vh"}>
+    <Grid bg={"white"} h={"100vh"}>
       <Flex direction={'column'}>
         <Image src={logo1} marginX={"auto"} my={"12.5px"} /> 
         <Container
