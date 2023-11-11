@@ -12,9 +12,12 @@ import {
   Divider
 } from "@chakra-ui/react";
 
+import iconPink from "../assets/iconPink.jpg";
+
 import { AiOutlineSearch } from "react-icons/ai";
 import { CiFilter } from "react-icons/ci";
 import { GrPowerReset } from "react-icons/gr";
+import { LuPencilLine } from "react-icons/lu";
 import { useSelector } from "react-redux";
 
 export const SearchBar = () => {
