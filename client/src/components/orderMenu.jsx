@@ -165,7 +165,7 @@ export const OrderMenu = () => {
                 base: "repeat(2,1fr)",
                 md: "repeat(3,1fr)",
                 lg: "repeat(4, 1fr)",
-                xl: "repeat(6, 1fr)"
+                xl: "repeat(4,1fr)",
               }}
               ml={{ base: "5%", md: "1%", lg: "2%" }}
               mr={{ base: "20%", md: "0" }}
@@ -182,24 +182,34 @@ export const OrderMenu = () => {
                 flexDirection={"column"}
                 alignItems={"center"}
                 bg={"white"}
-                w={{ md: "160px", lg: "170px" }}
+                w={{ md: "160px", lg: "170px", "2xl": "200px" }}
                 pt={{ base: "0", md: "10px" }}
                 rounded={{ base: "3xl", md: "md" }}
                 shadow={"2xl"}
                 pb={"8px"}
               >
-                <Box w={"150px"} display={"flex"} justifyContent={"center"}>
+                <Box display={"flex"} justifyContent={"center"}>
                   <Image
                     src={burger}
                     position={{ base: "absolute", md: "block" }}
                     top={{ base: "-10", md: "2.5" }}
-                    w={{ base: "100px", md: "140px", lg: "150px" }}
+                    w={{
+                      base: "100px",
+                      md: "140px",
+                      lg: "150px",
+                      "2xl": "180px",
+                    }}
                     rounded={{ base: "full", md: "md" }}
-                    h={"100px"}
+                    h={{ xl: "100px", "2xl": "120px" }}
                   />
                 </Box>
                 <Box
-                  w={{ base: "130px", md: "140px", lg: "150px" }}
+                  w={{
+                    base: "130px",
+                    md: "140px",
+                    lg: "150px",
+                    "2xl": "180px",
+                  }}
                   mt={{ base: "40%", md: "60%" }}
                   pb={"10px"}
                   display={"flex"}
@@ -223,24 +233,34 @@ export const OrderMenu = () => {
                 flexDirection={"column"}
                 alignItems={"center"}
                 bg={"white"}
-                w={{ md: "160px", lg: "170px" }}
+                w={{ md: "160px", lg: "170px", "2xl": "200px" }}
                 pt={{ base: "0", md: "10px" }}
                 rounded={{ base: "3xl", md: "md" }}
                 shadow={"2xl"}
                 pb={"8px"}
               >
-                <Box w={"150px"} display={"flex"} justifyContent={"center"}>
+                <Box display={"flex"} justifyContent={"center"}>
                   <Image
                     src={burger}
                     position={{ base: "absolute", md: "block" }}
                     top={{ base: "-10", md: "2.5" }}
-                    w={{ base: "100px", md: "140px", lg: "150px" }}
+                    w={{
+                      base: "100px",
+                      md: "140px",
+                      lg: "150px",
+                      "2xl": "180px",
+                    }}
                     rounded={{ base: "full", md: "md" }}
-                    h={"100px"}
+                    h={{ xl: "100px", "2xl": "120px" }}
                   />
                 </Box>
                 <Box
-                  w={{ base: "130px", md: "140px", lg: "150px" }}
+                  w={{
+                    base: "130px",
+                    md: "140px",
+                    lg: "150px",
+                    "2xl": "180px",
+                  }}
                   mt={{ base: "40%", md: "60%" }}
                   pb={"10px"}
                   display={"flex"}
@@ -264,24 +284,34 @@ export const OrderMenu = () => {
                 flexDirection={"column"}
                 alignItems={"center"}
                 bg={"white"}
-                w={{ md: "160px", lg: "170px" }}
+                w={{ md: "160px", lg: "170px", "2xl": "200px" }}
                 pt={{ base: "0", md: "10px" }}
                 rounded={{ base: "3xl", md: "md" }}
                 shadow={"2xl"}
                 pb={"8px"}
               >
-                <Box w={"150px"} display={"flex"} justifyContent={"center"}>
+                <Box display={"flex"} justifyContent={"center"}>
                   <Image
                     src={burger}
                     position={{ base: "absolute", md: "block" }}
                     top={{ base: "-10", md: "2.5" }}
-                    w={{ base: "100px", md: "140px", lg: "150px" }}
+                    w={{
+                      base: "100px",
+                      md: "140px",
+                      lg: "150px",
+                      "2xl": "180px",
+                    }}
                     rounded={{ base: "full", md: "md" }}
-                    h={"100px"}
+                    h={{ xl: "100px", "2xl": "120px" }}
                   />
                 </Box>
                 <Box
-                  w={{ base: "130px", md: "140px", lg: "150px" }}
+                  w={{
+                    base: "130px",
+                    md: "140px",
+                    lg: "150px",
+                    "2xl": "180px",
+                  }}
                   mt={{ base: "40%", md: "60%" }}
                   pb={"10px"}
                   display={"flex"}
@@ -305,24 +335,85 @@ export const OrderMenu = () => {
                 flexDirection={"column"}
                 alignItems={"center"}
                 bg={"white"}
-                w={{ md: "160px", lg: "170px" }}
+                w={{ md: "160px", lg: "170px", "2xl": "200px" }}
                 pt={{ base: "0", md: "10px" }}
                 rounded={{ base: "3xl", md: "md" }}
                 shadow={"2xl"}
                 pb={"8px"}
               >
-                <Box w={"150px"} display={"flex"} justifyContent={"center"}>
+                <Box display={"flex"} justifyContent={"center"}>
                   <Image
                     src={burger}
                     position={{ base: "absolute", md: "block" }}
                     top={{ base: "-10", md: "2.5" }}
-                    w={{ base: "100px", md: "140px", lg: "150px" }}
+                    w={{
+                      base: "100px",
+                      md: "140px",
+                      lg: "150px",
+                      "2xl": "180px",
+                    }}
                     rounded={{ base: "full", md: "md" }}
-                    h={"100px"}
+                    h={{ xl: "100px", "2xl": "120px" }}
                   />
                 </Box>
                 <Box
-                  w={{ base: "130px", md: "140px", lg: "150px" }}
+                  w={{
+                    base: "130px",
+                    md: "140px",
+                    lg: "150px",
+                    "2xl": "180px",
+                  }}
+                  mt={{ base: "40%", md: "60%" }}
+                  pb={"10px"}
+                  display={"flex"}
+                  flexDirection={"column"}
+                  justifyContent={"start"}
+                >
+                  <Text fontWeight={"bold"}>Burger</Text>
+                  <Text fontSize={"xs"}>Our delicious pure beef patty.</Text>
+                  <Text fontWeight={"bold"} color={"orange"}>
+                    $5.48
+                  </Text>
+                </Box>
+              </GridItem>
+              <GridItem
+                as={"Box"}
+                position={"relative"}
+                colSpan={1}
+                mt={{ base: "0", md: "20px" }}
+                mb={{ base: "30%", md: "0" }}
+                display={"flex"}
+                flexDirection={"column"}
+                alignItems={"center"}
+                bg={"white"}
+                w={{ md: "160px", lg: "170px", "2xl": "200px" }}
+                pt={{ base: "0", md: "10px" }}
+                rounded={{ base: "3xl", md: "md" }}
+                shadow={"2xl"}
+                pb={"8px"}
+              >
+                <Box display={"flex"} justifyContent={"center"}>
+                  <Image
+                    src={burger}
+                    position={{ base: "absolute", md: "block" }}
+                    top={{ base: "-10", md: "2.5" }}
+                    w={{
+                      base: "100px",
+                      md: "140px",
+                      lg: "150px",
+                      "2xl": "180px",
+                    }}
+                    rounded={{ base: "full", md: "md" }}
+                    h={{ xl: "100px", "2xl": "120px" }}
+                  />
+                </Box>
+                <Box
+                  w={{
+                    base: "130px",
+                    md: "140px",
+                    lg: "150px",
+                    "2xl": "180px",
+                  }}
                   mt={{ base: "40%", md: "60%" }}
                   pb={"10px"}
                   display={"flex"}

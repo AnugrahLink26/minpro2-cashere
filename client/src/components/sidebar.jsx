@@ -1,4 +1,14 @@
-import { Box, Button, Center, Container, Flex, Grid, GridItem, Link, Spacer, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Container,
+  Flex,
+  Grid,
+  GridItem,
+  Link,
+  Spacer,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { Image } from "@chakra-ui/react";
 import { FiHome, FiSettings, FiLogOut } from "react-icons/fi";
@@ -13,23 +23,30 @@ export const Sidebar = () => {
     md: "30px",
     lg: "40px",
     xl: "30px",
+    "2xl": "40px",
   });
   const iconBoxSize = useBreakpointValue({
     base: "0px",
     sm: "80px",
     md: "90px",
-    lg: "100px",
-    xl: "110px",
+    lg: "90px",
+    xl: "90px",
+    "2xl": "100px",
   });
-  
-//   const iconSize = useBreakpointValue({ base: '0px', sm: '10px', md: '20px', lg: '30px', xl: '40px' })
-//   const iconBoxSize = useBreakpointValue({base: "0px", sm: "70px", md: "80px", lg: "90px", xl: "100px"})
 
   const menuList = [
-    { 'icon': <FiHome fontSize={iconSize} />, 'name':'Home', 'path': '/' },
-    { 'icon': <VscGraph fontSize={iconSize} />, 'name':'Report', 'path': '/reports' },
-    { 'icon': <FiSettings fontSize={iconSize} />, 'name':'Setting', 'path': '/settings' },
-  ]
+    { icon: <FiHome fontSize={iconSize} />, name: "Home", path: "/" },
+    {
+      icon: <VscGraph fontSize={iconSize} />,
+      name: "Report",
+      path: "/reports",
+    },
+    {
+      icon: <FiSettings fontSize={iconSize} />,
+      name: "Setting",
+      path: "/settings",
+    },
+  ];
 
   const handleLogOut = async () => {
     try {
@@ -42,17 +59,16 @@ export const Sidebar = () => {
   return (
     <Center>
       <Grid bg={"white"} h={"100vh"}>
-        <Flex direction={'column'}>
-          <Image src={logo1} mt={"20px"} ml={'10px'} /> 
+        <Flex direction={"column"}>
+          <Image src={logo1} mt={"15px"} ml={"10px"} />
           <Container
-            h={"40vh"}
             mt={"50px"}
             display={"flex"}
             flexDirection={"column"}
             justifyContent={"space-between"}
           >
             {menuList.map((item, index) => (
-              <Link href={item.path} _hover={{ textDecoration: 'none' }}>
+              <Link href={item.path} _hover={{ textDecoration: "none" }}>
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -50 }}
@@ -68,14 +84,13 @@ export const Sidebar = () => {
                     display={"flex"}
                     flexDirection={"column"}
                     alignItems={"center"}
+                    justifyContent={"center"}
                     cursor={"pointer"}
-                    w={{ md: "116px", xl:'110px', '2xl': "130px" }}
+                    w={{ md: "116px", lg: "90px", xl: "110px" }}
                     bg={"white"}
-                    roundedLeft={"xl"}
-                    _hover={{ bg: "#F1F3F4", transitionDuration: "0.5s" }}
                   >
                     <Box
-                      w={iconBoxSize}
+                      px={"20px"}
                       my={"10px"}
                       py={"10px"}
                       _hover={{
@@ -88,7 +103,6 @@ export const Sidebar = () => {
                       flexDirection={"column"}
                       alignItems={"center"}
                       rowGap={1}
-                      pr={{ md: "10px", lg: "10px" }}
                     >
                       {item.icon}
                       {item.name}
@@ -133,7 +147,7 @@ export const Sidebar = () => {
                 Log Out
               </Box>
             </Box>
-          </motion.div>          
+          </motion.div>
         </Flex>
       </Grid>
     </Center>
