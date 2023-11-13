@@ -165,6 +165,7 @@ export const OrderMenu = () => {
                 base: "repeat(2,1fr)",
                 md: "repeat(3,1fr)",
                 lg: "repeat(4, 1fr)",
+                xl: "repeat(6, 1fr)"
               }}
               ml={{ base: "5%", md: "1%", lg: "2%" }}
               mr={{ base: "20%", md: "0" }}

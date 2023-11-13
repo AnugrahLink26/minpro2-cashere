@@ -26,7 +26,7 @@ export const HomePage = () => {
         sm: "30px 1fr 200px",
         md: "60px 1fr 300px",
         lg: "90px 1fr 400px",
-        xl: "120px 1fr 500px",
+        xl: "120px 1fr 450px",
       }}
     >
       <Box

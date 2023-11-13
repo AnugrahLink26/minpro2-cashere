@@ -26,7 +26,7 @@ export function NavProfile() {
     const user = useSelector((state) => state.user.value);
     const token = localStorage.getItem("token")
 
-    const profileWidth = useBreakpointValue({ base: '0px', sm: '200px', md: '300px', lg: '400px', xl: '500px' })
+    const profileWidth = useBreakpointValue({ base: '0px', sm: '200px', md: '300px', lg: '400px', xl: '450px' })
     const modalSize = useBreakpointValue({ base: 'full', sm: 'sm', md: 'md', lg: 'lg', xl: 'xl' });
 
     const { isOpen, onOpen, onClose } = useDisclosure()
