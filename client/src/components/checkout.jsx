@@ -28,12 +28,11 @@ const AnimatedGridItem = ({ children }) => {
 
 export const CheckOut = () => {
   return (
-    <Flex bg={"white"} flexDirection={"column"}>
+    <Flex bg={"white"} flexDirection={"column"} mt={"20%"}>
       <Flex
         borderLeft={"1px"}
         flexDirection={"column"}
         borderColor={"gray.200"}
-        h={"65vh"}
       >
         <Text mt={{ md: "20%", lg: "5%" }} ml={"8%"} fontWeight={"bold"}>
           Current Order
@@ -141,7 +140,8 @@ export const CheckOut = () => {
         </Grid>
       </Flex>
       <Box
-        h={"30vh"}
+        h={"22vh"}
+        mt={"20px"}
         borderTop={"1px"}
         borderLeft={"1px"}
         borderColor={"gray.200"}

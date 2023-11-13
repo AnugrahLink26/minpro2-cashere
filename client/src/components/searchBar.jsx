@@ -6,7 +6,7 @@ import {
   InputRightElement,
   Spacer,
   useBreakpointValue,
-  Center
+  Center,
 } from "@chakra-ui/react";
 
 import { AiOutlineSearch } from "react-icons/ai";
@@ -14,7 +14,14 @@ import { CiFilter } from "react-icons/ci";
 import { NavProfile } from "./navProfile";
 
 export const SearchBar = () => {
-  const profileSize = useBreakpointValue({ base: '0px', sm: '200px', md: '300px', lg: '400px', xl: '500px' })
+  const profileSize = useBreakpointValue({
+    base: "0px",
+    sm: "200px",
+    md: "300px",
+    lg: "400px",
+    xl: "500px",
+    xl: "",
+  });
 
   return (
     <Flex

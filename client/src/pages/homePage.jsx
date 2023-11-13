@@ -8,8 +8,8 @@ import { Welcome } from "../components/welcome";
 import { Login } from "../components/login";
 
 export const HomePage = () => {
-  const token = localStorage.getItem("token")
-  
+  const token = localStorage.getItem("token");
+
   return (
     <Grid
       templateAreas={{
@@ -26,7 +26,8 @@ export const HomePage = () => {
         sm: "30px 1fr 200px",
         md: "60px 1fr 300px",
         lg: "90px 1fr 400px",
-        xl: "120px 1fr 500px",
+        xl: "150px 1fr 300px",
+        "2xl": "120px 1fr 500px",
       }}
     >
       <Box
@@ -57,29 +58,26 @@ export const HomePage = () => {
         w={{ base: "100vw", md: "50vw", lg: "full" }}
         h={"100vh"}
       >
-        {
-          token ? <OrderMenu /> : <Welcome />
-        }
+        {token ? <OrderMenu /> : <Welcome />}
       </Box>
-      {
-        token ? 
+      {token ? (
         <Box
           display={{ base: "none", md: "block" }}
           as={GridItem}
           area={"footer"}
           position={"sticky"}
-          top={"70px"}
+          bottom={"0px"}
           bg={"white"}
         >
           <CheckOut />
         </Box>
-        : 
+      ) : (
         <Box
           display={{ base: "none", md: "block" }}
           as={GridItem}
           area={"footer"}
           position={"sticky"}
-          borderLeft={"1px"} 
+          borderLeft={"1px"}
           borderColor={"gray.200"}
           bg={"white"}
         >
@@ -87,7 +85,7 @@ export const HomePage = () => {
             <Login />
           </Center>
         </Box>
-      }
+      )}
     </Grid>
   );
 };
