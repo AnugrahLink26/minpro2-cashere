@@ -25,7 +25,7 @@ module.exports =
 
     registerCashier: async (req, res) => {
         try {
-            const { username, email, password } = req.body
+            const { fullname, username, email, password } = req.body
 
             const checkUser = await User.findOne({
                 where: { [Op.or]: [ {username}, {email} ] }
@@ -36,6 +36,7 @@ module.exports =
 
             if (checkUser == null) {
                 const result = await User.create({
+                    fullname,
                     username,
                     email,
                     password: hashPassword

@@ -127,5 +127,42 @@ module.exports =
             console.log(error);
             res.status(400).send({ error: error.message })
         }
+    },
+
+    changePassword: async (req, res) => 
+    {
+        try {
+            const { oldPassword, newPassword ,newPasswordConfirmation } = req.body
+            const findUser = await User.findOne({
+                where: { id: req.user.id }
+            })
+         
+            const isValidOldPassword = await bcrypt.compare(oldPassword, findUser.password)
+
+            if (!isValidOldPassword) {
+                return res.status(400).send({ message: 'Incorrect old password!' })
+            }
+
+            if (oldPassword == newPassword) {
+                return res.status(400).send({ message: 'New password cannot be the same as the old password' })
+            }
+
+            if (newPassword !== newPasswordConfirmation) {
+                return res.status(400).send({ message: 'New password must match!' })
+            }
+
+            const salt = await bcrypt.genSalt(10)
+            const hashPassword = await bcrypt.hash(newPasswordConfirmation, salt)
+
+            await User.update(
+                { password: hashPassword },
+                { where: { id: req.user.id } }
+            )
+
+            return res.status(200).send('Password successfully changed!')
+        } catch (error) {
+            console.log(error);
+            res.status(400).send({ error: error.message })
+        }
     }
 };

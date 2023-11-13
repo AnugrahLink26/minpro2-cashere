@@ -8,22 +8,36 @@ import {
   Spacer,
   useBreakpointValue,
   Stack,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { FiPlus } from "react-icons/fi";
+import React from "react";
+import RegisterCashier from "./registerCashier";
 
 export function NavProfile() {
     const user = useSelector((state) => state.user.value);
     const token = localStorage.getItem("token")
 
     const profileWidth = useBreakpointValue({ base: '0px', sm: '200px', md: '300px', lg: '400px', xl: '500px' })
+    const modalSize = useBreakpointValue({ base: 'full', sm: 'sm', md: 'md', lg: 'lg', xl: 'xl' });
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const finalRef = React.useRef(null)
 
     return (
         <Box alignItems={"center"} w={profileWidth}>
             {
                 token ? 
-                <Flex >
-                    <Flex ml={'8%'}>
+                <Flex mx={'4%'}>
+                    <Flex>
                         <Avatar 
                             size={'md'}
                             name={user.username}
@@ -39,27 +53,35 @@ export function NavProfile() {
                         </Stack>
                     </Flex>
                     <Spacer />
-                    <Flex mr={'8%'} alignItems={'center'}>
+                    <Flex alignItems={'center'}>
                         <Button 
                             bg={'#DB1783'}
                             color={'white'}
                             variant='solid'
+                            leftIcon={<FiPlus />}
+                            onClick={onOpen}
                             _hover={{
                                 bg: '#FFD4E9',
                                 color: '#DB1783'
                         }}>
-                            <FiPlus />
-                            Register Cashier
+                            Cashier
                         </Button>
+                        <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose} size={modalSize} isCentered>
+                            <ModalOverlay />
+                            <ModalContent bg={'white'}>
+                                <ModalCloseButton />
+                                <ModalBody>
+                                    <RegisterCashier onClose={onClose} />
+                                </ModalBody>
+                            </ModalContent>
+                        </Modal>
                     </Flex>
                 </Flex>
                 :
-                <Flex>
+                <Center>
                     <Avatar size={"md"}/>
-                    <Center>
-                        <Text ml={"10px"} fontSize={"sm"} fontWeight={"bold"}>Not logged in</Text>
-                    </Center>
-                </Flex>
+                    <Text ml={"10px"} fontSize={"sm"} fontWeight={"bold"}>Not logged in</Text>
+                </Center>
             }
         </Box>
     )
