@@ -9,6 +9,22 @@ import {
 } from "@chakra-ui/react";
 
 import pizza from "../assets/pizza.webp";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
+
+const AnimatedGridItem = ({ children }) => {
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start({ x: 0, opacity: 1, transition: { duration: 0.5 } });
+  }, [controls]);
+
+  return (
+    <motion.div initial={{ x: "100%", opacity: 0 }} animate={controls}>
+      {children}
+    </motion.div>
+  );
+};
 
 export const CheckOut = () => {
   return (
@@ -24,96 +40,104 @@ export const CheckOut = () => {
         </Text>
 
         <Grid w={"84%"} mx={"auto"} mt={"2%"} rowGap={"10px"}>
-          <Flex
-            as={GridItem}
-            w={{ md: "210px", lg: "250px" }}
-            bg={"gray.200"}
-            py={"10px"}
-            pl={"10px"}
-            rounded={"md"}
-          >
-            <Image rounded={"md"} w={"60px"} src={pizza} />
+          <AnimatedGridItem>
             <Flex
-              ml={"10px"}
-              w={"160px"}
-              flexDirection={"column"}
-              rowGap={"6px"}
+              as={GridItem}
+              w={{ md: "210px", lg: "250px" }}
+              bg={"gray.200"}
+              py={"10px"}
+              pl={"10px"}
+              rounded={"md"}
             >
-              <Text fontWeight={"bold"}>Pizza Enak</Text>
-              <Flex justifyContent={"space-between"}>
-                <Text color={"orange"}>$ 20.50</Text>
+              <Image rounded={"md"} w={"60px"} src={pizza} />
+              <Flex
+                ml={"10px"}
+                w={"160px"}
+                flexDirection={"column"}
+                rowGap={"6px"}
+              >
+                <Text fontWeight={"bold"}>Pizza Enak</Text>
+                <Flex justifyContent={"space-between"}>
+                  <Text color={"orange"}>$ 20.50</Text>
+                </Flex>
               </Flex>
             </Flex>
-          </Flex>
+          </AnimatedGridItem>
         </Grid>
         <Grid w={"84%"} mx={"auto"} mt={"5%"} rowGap={"10px"}>
-          <Flex
-            as={GridItem}
-            w={{ md: "210px", lg: "250px" }}
-            bg={"gray.200"}
-            py={"10px"}
-            pl={"10px"}
-            rounded={"md"}
-          >
-            <Image rounded={"md"} w={"60px"} src={pizza} />
+          <AnimatedGridItem>
             <Flex
-              ml={"10px"}
-              w={"160px"}
-              flexDirection={"column"}
-              rowGap={"6px"}
+              as={GridItem}
+              w={{ md: "210px", lg: "250px" }}
+              bg={"gray.200"}
+              py={"10px"}
+              pl={"10px"}
+              rounded={"md"}
             >
-              <Text fontWeight={"bold"}>Pizza Enak</Text>
-              <Flex justifyContent={"space-between"}>
-                <Text color={"orange"}>$ 20.50</Text>
+              <Image rounded={"md"} w={"60px"} src={pizza} />
+              <Flex
+                ml={"10px"}
+                w={"160px"}
+                flexDirection={"column"}
+                rowGap={"6px"}
+              >
+                <Text fontWeight={"bold"}>Pizza Enak</Text>
+                <Flex justifyContent={"space-between"}>
+                  <Text color={"orange"}>$ 20.50</Text>
+                </Flex>
               </Flex>
             </Flex>
-          </Flex>
+          </AnimatedGridItem>
         </Grid>
         <Grid w={"84%"} mx={"auto"} mt={"5%"} rowGap={"10px"}>
-          <Flex
-            as={GridItem}
-            w={{ md: "210px", lg: "250px" }}
-            bg={"gray.200"}
-            py={"10px"}
-            pl={"10px"}
-            rounded={"md"}
-          >
-            <Image rounded={"md"} w={"60px"} src={pizza} />
+          <AnimatedGridItem>
             <Flex
-              ml={"10px"}
-              w={"160px"}
-              flexDirection={"column"}
-              rowGap={"6px"}
+              as={GridItem}
+              w={{ md: "210px", lg: "250px" }}
+              bg={"gray.200"}
+              py={"10px"}
+              pl={"10px"}
+              rounded={"md"}
             >
-              <Text fontWeight={"bold"}>Pizza Enak</Text>
-              <Flex justifyContent={"space-between"}>
-                <Text color={"orange"}>$ 20.50</Text>
+              <Image rounded={"md"} w={"60px"} src={pizza} />
+              <Flex
+                ml={"10px"}
+                w={"160px"}
+                flexDirection={"column"}
+                rowGap={"6px"}
+              >
+                <Text fontWeight={"bold"}>Pizza Enak</Text>
+                <Flex justifyContent={"space-between"}>
+                  <Text color={"orange"}>$ 20.50</Text>
+                </Flex>
               </Flex>
             </Flex>
-          </Flex>
+          </AnimatedGridItem>
         </Grid>
         <Grid w={"84%"} mx={"auto"} mt={"5%"} rowGap={"10px"}>
-          <Flex
-            as={GridItem}
-            w={{ md: "210px", lg: "250px" }}
-            bg={"gray.200"}
-            py={"10px"}
-            pl={"10px"}
-            rounded={"md"}
-          >
-            <Image rounded={"md"} w={"60px"} src={pizza} />
+          <AnimatedGridItem>
             <Flex
-              ml={"10px"}
-              w={"160px"}
-              flexDirection={"column"}
-              rowGap={"6px"}
+              as={GridItem}
+              w={{ md: "210px", lg: "250px" }}
+              bg={"gray.200"}
+              py={"10px"}
+              pl={"10px"}
+              rounded={"md"}
             >
-              <Text fontWeight={"bold"}>Pizza Enak</Text>
-              <Flex justifyContent={"space-between"}>
-                <Text color={"orange"}>$ 20.50</Text>
+              <Image rounded={"md"} w={"60px"} src={pizza} />
+              <Flex
+                ml={"10px"}
+                w={"160px"}
+                flexDirection={"column"}
+                rowGap={"6px"}
+              >
+                <Text fontWeight={"bold"}>Pizza Enak</Text>
+                <Flex justifyContent={"space-between"}>
+                  <Text color={"orange"}>$ 20.50</Text>
+                </Flex>
               </Flex>
             </Flex>
-          </Flex>
+          </AnimatedGridItem>
         </Grid>
       </Flex>
       <Box
