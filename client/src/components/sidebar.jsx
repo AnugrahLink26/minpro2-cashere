@@ -40,107 +40,6 @@ export const Sidebar = () => {
     }
   };
   return (
-//     <Grid bg={"white"} h={"100vh"} borderRight={"1px"} borderColor={"gray.200"}>
-//       <Flex direction={"column"}>
-//         <motion.div
-//           initial={{ opacity: 0, y: -50 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.5 }}
-//         >
-//           <Image
-//             src={logo1}
-//             pr={{ md: "10px", lg: "10px" }}
-//             marginX={"auto"}
-//             my={"12.5px"}
-//           />
-//         </motion.div>
-//         <Container
-//           h={"50vh"}
-//           mt={"50px"}
-//           display={"flex"}
-//           flexDirection={"column"}
-//           justifyContent={"space-between"}
-//         >
-//           {menuList.map((item, index) => (
-//             <motion.div
-//               key={index}
-//               initial={{ opacity: 0, x: -50 }}
-//               animate={{ opacity: 1, x: 0 }}
-//               transition={{
-//                 duration: 0.5,
-//                 delay: index * 0.1,
-//                 ease: "easeInOut",
-//               }}
-//             >
-//               <Box
-//                 rowGap={"0.5"}
-//                 display={"flex"}
-//                 flexDirection={"column"}
-//                 alignItems={"center"}
-//                 cursor={"pointer"}
-//                 w={{ md: "116px", lg: "137px" }}
-//                 bg={"white"}
-//                 roundedLeft={"xl"}
-//                 // F1F3F4
-//                 _hover={{ bg: "#F1F3F4", transitionDuration: "0.5s" }}
-//               >
-//                 <Box
-//                   w={iconBoxSize}
-//                   my={"10px"}
-//                   py={"10px"}
-//                   _Focus={{
-//                     bg: "red",
-//                   }}
-//                   _hover={{
-//                     bg: "#ED0A72",
-//                     color: "white",
-//                     transitionDuration: "0.5s",
-//                   }}
-//                   rounded={"xl"}
-//                   display={"flex"}
-//                   rowGap={"1"}
-//                   flexDirection={"column"}
-//                   alignItems={"center"}
-//                   pr={{ md: "10px", lg: "10px" }}
-//                 >
-//                   {item.icon}
-//                   {item.name}
-//                 </Box>
-//               </Box>
-//             </motion.div>
-//           ))}
-//         </Container>
-//         <Spacer />
-//         <motion.div
-//           initial={{ opacity: 0, x: -50 }}
-//           animate={{ opacity: 1, x: 0 }}
-//           transition={{
-//             duration: 0.5,
-//             delay: menuList.length * 0.1,
-//             ease: "easeInOut",
-//           }}
-//         >
-//           <Box
-//             display={"flex"}
-//             flexDirection={"column"}
-//             alignItems={"center"}
-//             cursor={"pointer"}
-//           >
-//             <Box
-//               w={iconBoxSize}
-//               py={"10px"}
-//               _hover={{
-//                 bg: "#ED0A72",
-//                 color: "white",
-//                 transitionDuration: "0.5s",
-//               }}
-//               rounded={"xl"}
-//               display={"flex"}
-//               rowGap={"1"}
-//               flexDirection={"column"}
-//               alignItems={"center"}
-//               mb={"20px"}
-//             >
     <Center>
       <Grid bg={"white"} h={"100vh"}>
         <Flex direction={'column'}>
@@ -152,64 +51,89 @@ export const Sidebar = () => {
             flexDirection={"column"}
             justifyContent={"space-between"}
           >
-            {menuList.map((item) => (
+            {menuList.map((item, index) => (
               <Link href={item.path} _hover={{ textDecoration: 'none' }}>
-                <Box
-                  display={"flex"}
-                  flexDirection={"column"}
-                  alignItems={"center"}
-                  cursor={"pointer"}
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.1,
+                    ease: "easeInOut",
+                  }}
                 >
                   <Box
-                    w={iconBoxSize}
-                    py={"10px"}
-                    _hover={{
-                      bg: "#ED0A72",
-                      color: "white",
-                      transitionDuration: "0.5s",
-                    }}
-                    rounded={"xl"}
+                    rowGap={"0.5"}
                     display={"flex"}
                     flexDirection={"column"}
                     alignItems={"center"}
-                    rowGap={1}
+                    cursor={"pointer"}
+                    w={{ md: "116px", lg: "137px" }}
+                    bg={"white"}
+                    roundedLeft={"xl"}
+                    _hover={{ bg: "#F1F3F4", transitionDuration: "0.5s" }}
                   >
-                    {item.icon}
-                    {item.name}
+                    <Box
+                      w={iconBoxSize}
+                      my={"10px"}
+                      py={"10px"}
+                      _hover={{
+                        bg: "#ED0A72",
+                        color: "white",
+                        transitionDuration: "0.5s",
+                      }}
+                      rounded={"xl"}
+                      display={"flex"}
+                      flexDirection={"column"}
+                      alignItems={"center"}
+                      rowGap={1}
+                      pr={{ md: "10px", lg: "10px" }}
+                    >
+                      {item.icon}
+                      {item.name}
+                    </Box>
                   </Box>
-                </Box>
+                </motion.div>
               </Link>
             ))}
           </Container>
           <Spacer />
-          <Box
-            display={"flex"}
-            flexDirection={"column"}
-            alignItems={"center"}
-            cursor={"pointer"}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: menuList.length * 0.1,
+              ease: "easeInOut",
+            }}
           >
             <Box
-              w={iconBoxSize}
-              py={"10px"}
-              _hover={{
-                bg: "#ED0A72",
-                color: "white",
-                transitionDuration: "0.5s",
-              }}
-              rounded={"xl"}
               display={"flex"}
-              rowGap={"1"}
               flexDirection={"column"}
               alignItems={"center"}
-              mb={"20px"}
+              cursor={"pointer"}
             >
-              <FiLogOut onClick={handleLogOut} fontSize={iconSize} />
-              Log Out
+              <Box
+                w={iconBoxSize}
+                py={"10px"}
+                _hover={{
+                  bg: "#ED0A72",
+                  color: "white",
+                  transitionDuration: "0.5s",
+                }}
+                rounded={"xl"}
+                display={"flex"}
+                rowGap={"1"}
+                flexDirection={"column"}
+                alignItems={"center"}
+                mb={"20px"}
+              >
+                <FiLogOut onClick={handleLogOut} fontSize={iconSize} />
+                Log Out
+              </Box>
             </Box>
-          </Box>
-//         </motion.div>
-//       </Flex>
-//     </Grid>
+          </motion.div>          
         </Flex>
       </Grid>
     </Center>
