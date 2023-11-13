@@ -20,6 +20,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setData } from "../redux/userSlice";
 import { FiLogIn } from "react-icons/fi";
+import { useState } from 'react';
 
 YupPassword(Yup)
 
@@ -33,6 +34,10 @@ const LoginSchema = Yup.object().shape({
 
 export function Login() {
   const dispatch = useDispatch()
+
+  const [showOldPassword, setShowOldPassword] = useState(false)
+  const [showNewPassword, setShowNewPassword] = useState(false)
+  const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false)
 
   const formWidth = useBreakpointValue({ base: '0px', sm: '150px', md: '250px', lg: '350px', xl: '450px' })
 
@@ -66,7 +71,7 @@ export function Login() {
               alignItems="center"
               justifyContent="center"
               color="white"
-              my={2}
+              my={3}
             >
               <FiLogIn fontSize={"20px"} />
             </Box>
@@ -82,69 +87,65 @@ export function Login() {
               action.resetForm()
             }}
           >
-            {(props) => {
-              return (
-                <Form>
-                  <FormControl id="username" mb={5}>
-                    <FormLabel htmlFor="username">Username</FormLabel>
-                    <Field
-                      as={Input}
-                      id="username"
-                      name="username"
-                      type="username"
-                      variant="filled"
-                      bg='#FFD4E9'
-                      
-                    />
-                    <ErrorMessage
-                      component="FormControl"
-                      name="username"
-                      style={{ color: "red"}}
-                    />
-                  </FormControl>
-                  <FormControl id="password" mb={5}>
-                    <FormLabel htmlFor="password">Password</FormLabel>
-                    <Field
-                      as={Input}
-                      id="password"
-                      name="password"
-                      type="password"
-                      variant="filled"
-                      bg='#FFD4E9'                          
-                      class="
-                        bg-gray-50 border 
-                        border-gray-500 
-                        text-gray-900 
-                        text-sm 
-                        rounded-lg 
-                        block 
-                        w-full 
-                        p-2.5 
-                      "
-                    />
-                    <ErrorMessage
-                      component="FormControl"
-                      name="password"
-                      style={{ color: "red"}}
-                    />
-                  </FormControl>
-                  <Stack spacing={5}>
-                    <Checkbox>Remember me</Checkbox>
-                    <Button
-                      type='submit'
-                      bg={'#DB1783'}
-                      color={'white'}
-                      _hover={{
-                      bg: '#FFD4E9',
-                      color: '#DB1783'
-                    }}>
-                      Login
-                    </Button>
-                    <Text color={'#DB1783'}>Forgot password?</Text>
-                  </Stack>
-                </Form>
-              )
-            }}
+            <Form>
+              <FormControl id="username" mb={5}>
+                <FormLabel htmlFor="username">Username</FormLabel>
+                <Field
+                  as={Input}
+                  id="username"
+                  name="username"
+                  type="username"
+                  variant="filled"
+                  bg='#FFD4E9'
+                  
+                />
+                <ErrorMessage
+                  component="FormControl"
+                  name="username"
+                  style={{ color: "red"}}
+                />
+              </FormControl>
+              <FormControl id="password" mb={5}>
+                <FormLabel htmlFor="password">Password</FormLabel>
+                <Field
+                  as={Input}
+                  id="password"
+                  name="password"
+                  type="password"
+                  variant="filled"
+                  bg='#FFD4E9'                          
+                  class="
+                    bg-gray-50 border 
+                    border-gray-500 
+                    text-gray-900 
+                    text-sm 
+                    rounded-lg 
+                    block 
+                    w-full 
+                    p-2.5 
+                  "
+                />
+                <ErrorMessage
+                  component="FormControl"
+                  name="password"
+                  style={{ color: "red"}}
+                />
+              </FormControl>
+              <Stack spacing={5}>
+                <Checkbox>Remember me</Checkbox>
+                <Button
+                  type='submit'
+                  bg={'#DB1783'}
+                  color={'white'}
+                  _hover={{
+                  bg: '#FFD4E9',
+                  color: '#DB1783'
+                }}>
+                  Login
+                </Button>
+                <Text color={'#DB1783'}>Forgot password?</Text>
+              </Stack>
+            </Form>
           </Formik>
         </Stack>
       </Box>
