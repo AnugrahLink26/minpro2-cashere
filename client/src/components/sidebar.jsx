@@ -12,7 +12,7 @@ export const Sidebar = () => {
     sm: "20px",
     md: "30px",
     lg: "40px",
-    xl: "50px",
+    xl: "30px",
   });
   const iconBoxSize = useBreakpointValue({
     base: "0px",
@@ -43,7 +43,7 @@ export const Sidebar = () => {
     <Center>
       <Grid bg={"white"} h={"100vh"}>
         <Flex direction={'column'}>
-          <Image src={logo1} mt={"20px"}/> 
+          <Image src={logo1} mt={"20px"} ml={'10px'} /> 
           <Container
             h={"40vh"}
             mt={"50px"}
@@ -69,7 +69,7 @@ export const Sidebar = () => {
                     flexDirection={"column"}
                     alignItems={"center"}
                     cursor={"pointer"}
-                    w={{ md: "116px", lg: "137px" }}
+                    w={{ md: "116px", xl:'110px', '2xl': "130px" }}
                     bg={"white"}
                     roundedLeft={"xl"}
                     _hover={{ bg: "#F1F3F4", transitionDuration: "0.5s" }}
