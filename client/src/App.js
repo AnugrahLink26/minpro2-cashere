@@ -6,6 +6,7 @@ import { setData } from "./redux/userSlice";
 import { Box } from "@chakra-ui/react";
 import { createBrowserRouter, Route, Router, RouterProvider, Routes, BrowserRouter } from "react-router-dom";
 import { SettingsPage } from "./pages/settingsPage";
+import { Category } from "./components/category";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -34,6 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/category" element={<Category />} />
         </Routes>
       </Box>
     </BrowserRouter>

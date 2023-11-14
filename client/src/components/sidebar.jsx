@@ -4,7 +4,6 @@ import {
   Container,
   Flex,
   Grid,
-  GridItem,
   Link,
   Spacer,
   useBreakpointValue,
@@ -19,7 +18,6 @@ import logo1 from "../assets/logo1.png";
 export const Sidebar = () => {
   const iconSize = useBreakpointValue({
     base: "0px",
-    sm: "20px",
     md: "30px",
     lg: "40px",
     xl: "30px",
@@ -27,10 +25,9 @@ export const Sidebar = () => {
   });
   const iconBoxSize = useBreakpointValue({
     base: "0px",
-    sm: "80px",
-    md: "90px",
+    md: "30px",
     lg: "90px",
-    xl: "90px",
+    xl: "80px",
     "2xl": "100px",
   });
 
@@ -58,9 +55,18 @@ export const Sidebar = () => {
   };
   return (
     <Center>
-      <Grid bg={"white"} h={"100vh"}>
+      <Grid
+        bg={"white"}
+        h={"100vh"}
+        borderRight={"1px"}
+        borderColor={"gray.200"}
+      >
         <Flex direction={"column"}>
-          <Image src={logo1} mt={"15px"} ml={"10px"} />
+          <Image
+            src={logo1}
+            mt={"15px"}
+            ml={{ md: "45px", xl: "50px", "2xl": "10px" }}
+          />
           <Container
             mt={"50px"}
             display={"flex"}
@@ -90,9 +96,10 @@ export const Sidebar = () => {
                     bg={"white"}
                   >
                     <Box
-                      px={"20px"}
+                      w={iconBoxSize}
                       my={"10px"}
                       py={"10px"}
+                      ml={{ md: "40px", lg: "0", xl: "45px", "2xl": "0" }}
                       _hover={{
                         bg: "#ED0A72",
                         color: "white",
@@ -142,6 +149,7 @@ export const Sidebar = () => {
                 flexDirection={"column"}
                 alignItems={"center"}
                 mb={"20px"}
+                ml={{ md: "40px", lg: "0", xl: "45px", "2xl": "0" }}
               >
                 <FiLogOut onClick={handleLogOut} fontSize={iconSize} />
                 Log Out

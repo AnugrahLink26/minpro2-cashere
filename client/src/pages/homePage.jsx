@@ -24,9 +24,9 @@ export const HomePage = () => {
       gridTemplateColumns={{
         base: "0px 1fr",
         sm: "30px 1fr 200px",
-        md: "60px 1fr 300px",
+        md: "60px 1fr 250px",
         lg: "90px 1fr 400px",
-        xl: "150px 1fr 300px",
+        xl: "50px 1fr 300px",
         "2xl": "120px 1fr 500px",
       }}
     >
