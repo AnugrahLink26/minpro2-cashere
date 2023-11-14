@@ -100,7 +100,7 @@ module.exports =
                 where: 
                 {
                     id: req.user.id
-                }
+               }
             })
             res.status(200).send(result)
         } 

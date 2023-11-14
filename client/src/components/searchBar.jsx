@@ -34,6 +34,7 @@ export const SearchBar = () => {
         h={"50px"}
         px={"10px"}
         mt={"10px"}
+        ml={{ md: "5%", lg: "0", xl: "30px" }}
         borderLeft={"1px"}
         borderColor={"gray.300"}
         alignItems={"center"}

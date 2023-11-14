@@ -6,6 +6,7 @@ import { setData } from "./redux/userSlice";
 import { Box } from "@chakra-ui/react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { SettingsPage } from "./pages/settingsPage";
+import { Category } from "./components/category";
 
 function App() {
   const token = localStorage.getItem("token");

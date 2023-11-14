@@ -4,7 +4,6 @@ import {
   Container,
   Flex,
   Grid,
-  GridItem,
   Link,
   Spacer,
   useBreakpointValue,
@@ -56,9 +55,18 @@ export const Sidebar = () => {
   };
   return (
     <Center>
-      <Grid bg={"white"} h={"100vh"}>
+      <Grid
+        bg={"white"}
+        h={"100vh"}
+        borderRight={"1px"}
+        borderColor={"gray.200"}
+      >
         <Flex direction={"column"}>
-          <Image src={logo1} mt={"15px"} ml={{ md: "45px", xl: "50px", "2xl": "10px" }} />
+          <Image
+            src={logo1}
+            mt={"15px"}
+            ml={{ md: "45px", xl: "50px", "2xl": "10px" }}
+          />
           <Container
             mt={"50px"}
             display={"flex"}
@@ -88,7 +96,7 @@ export const Sidebar = () => {
                     bg={"white"}
                   >
                     <Box
-                      width={iconBoxSize}
+                      w={iconBoxSize}
                       my={"10px"}
                       py={"10px"}
                       ml={{ md: "40px", lg: "0", xl: "45px", "2xl": "0" }}
@@ -129,7 +137,6 @@ export const Sidebar = () => {
             >
               <Box
                 w={iconBoxSize}
-                // px={'30px'}
                 py={"10px"}
                 _hover={{
                   bg: "#ED0A72",
