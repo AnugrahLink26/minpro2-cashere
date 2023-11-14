@@ -9,7 +9,9 @@ import {
   Heading,
   Text,
   Center,
-  useBreakpointValue
+  useBreakpointValue,
+  InputGroup,
+  InputRightElement
 } from '@chakra-ui/react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -18,6 +20,8 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setData } from "../redux/userSlice";
 import { FiLogIn } from "react-icons/fi";
+import { useState } from 'react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 
 YupPassword(Yup)
 
@@ -35,8 +39,12 @@ const ChangePasswordSchema = Yup.object().shape({
     .required('New password confirmation is required')   
 })
 
-export function ChangePassword() {
+export function Security() {
   const dispatch = useDispatch()
+
+  const [showOldPassword, setShowOldPassword] = useState(false)
+  const [showNewPassword, setShowNewPassword] = useState(false)
+  const [showNewPasswordConfirmation, setShowNewPasswordConfirmation] = useState(false)
 
   const formWidth = useBreakpointValue({ base: '0px', sm: '150px', md: '250px', lg: '350px', xl: '450px' })
 
@@ -79,9 +87,9 @@ export function ChangePassword() {
             initialValues={{
               oldPassword: '',
               newPassword: '',
-              newPasswordConfirmation
+              newPasswordConfirmation: ''
             }}
-            validationSchema={LoginSchema}
+            validationSchema={ChangePasswordSchema}
             onSubmit={(values, action) => {
               handleSubmit(values)
               action.resetForm()
@@ -95,15 +103,15 @@ export function ChangePassword() {
                         as={Input}
                         id="oldPassword"
                         name="oldPassword"
-                        type={showPassword ? 'text' : 'oldPassword'}
+                        type={showOldPassword ? 'text' : 'password'}
                         variant="filled"
                         bg='#FFD4E9'
                     />
                     <InputRightElement h={'full'}>
                         <Button
                             variant={'ghost'}
-                            onClick={() => setShowPassword((showPassword) => !showPassword)}>
-                            {showPassword ? <ViewIcon/> : <ViewOffIcon/>}
+                            onClick={() => setShowOldPassword((showOldPassword) => !showOldPassword)}>
+                            {showOldPassword ? <ViewIcon/> : <ViewOffIcon/>}
                         </Button>
                     </InputRightElement>
                 </InputGroup>
@@ -113,53 +121,53 @@ export function ChangePassword() {
                     style={{ color: "red"}}
                 />
               </FormControl>
-              <FormControl id="password" isRequired>
-                <FormLabel>Password</FormLabel>
+              <FormControl id="newPassword" isRequired>
+                <FormLabel>New Password</FormLabel>
                 <InputGroup>
                     <Field
                         as={Input}
-                        id="password"
-                        name="password"
-                        type={showPassword ? 'text' : 'password'}
+                        id="newPassword"
+                        name="newPassword"
+                        type={showNewPassword ? 'text' : 'password'}
                         variant="filled"
                         bg='#FFD4E9'
                     />
                     <InputRightElement h={'full'}>
                         <Button
                             variant={'ghost'}
-                            onClick={() => setShowPassword((showPassword) => !showPassword)}>
-                            {showPassword ? <ViewIcon/> : <ViewOffIcon/>}
+                            onClick={() => setShowNewPassword((showNewPassword) => !showNewPassword)}>
+                            {showNewPassword ? <ViewIcon/> : <ViewOffIcon/>}
                         </Button>
                     </InputRightElement>
                 </InputGroup>
                 <ErrorMessage
                     component="FormControl"
-                    name="password"
+                    name="newPassword"
                     style={{ color: "red"}}
                 />
               </FormControl>
-              <FormControl id="passwordConfirmation" isRequired>
+              <FormControl id="newPasswordConfirmation" isRequired>
                   <FormLabel>Password Confirmation</FormLabel>
                   <InputGroup>
                       <Field
                           as={Input}
-                          id="passwordConfirmation"
-                          name="passwordConfirmation"
-                          type={showPasswordConfirmation ? 'text' : 'password'}
+                          id="newPasswordConfirmation"
+                          name="newPasswordConfirmation"
+                          type={showNewPasswordConfirmation ? 'text' : 'password'}
                           variant="filled"
                           bg='#FFD4E9'
                       />
                       <InputRightElement h={'full'}>
                           <Button
                               variant={'ghost'}
-                              onClick={() => setShowPasswordConfirmation((showPasswordConfirmation) => !showPasswordConfirmation)}>
-                              {showPasswordConfirmation ? <ViewIcon/> : <ViewOffIcon/>}
+                              onClick={() => setShowNewPasswordConfirmation((showNewPasswordConfirmation) => !showNewPasswordConfirmation)}>
+                              {showNewPasswordConfirmation ? <ViewIcon/> : <ViewOffIcon/>}
                           </Button>
                       </InputRightElement>
                   </InputGroup>
                   <ErrorMessage
                       component="FormControl"
-                      name="passwordConfirmation"
+                      name="newPasswordConfirmation"
                       style={{ color: "red"}}
                   />
               </FormControl>
@@ -173,9 +181,8 @@ export function ChangePassword() {
                   bg: '#FFD4E9',
                   color: '#DB1783'
                 }}>
-                  Login
+                  Change Password
                 </Button>
-                <Text color={'#DB1783'}>Forgot password?</Text>
               </Stack>
             </Form>
           </Formik>

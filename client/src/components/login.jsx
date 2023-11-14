@@ -35,10 +35,6 @@ const LoginSchema = Yup.object().shape({
 export function Login() {
   const dispatch = useDispatch()
 
-  const [showOldPassword, setShowOldPassword] = useState(false)
-  const [showNewPassword, setShowNewPassword] = useState(false)
-  const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false)
-
   const formWidth = useBreakpointValue({ base: '0px', sm: '150px', md: '250px', lg: '350px', xl: '450px' })
 
   const handleSubmit = async (data) => {
