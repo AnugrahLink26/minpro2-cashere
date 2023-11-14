@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setData } from "./redux/userSlice";
 import { Box } from "@chakra-ui/react";
-import { createBrowserRouter, Route, Router, RouterProvider, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { SettingsPage } from "./pages/settingsPage";
 import { Category } from "./components/category";
 
@@ -34,8 +34,11 @@ function App() {
       <Box bg={"#F1F3F4"}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/category" element={<Category />} />
+          <Route path="/settings/my-profile" element={<SettingsPage />} />
+          <Route path="/settings/manage-cashiers" element={<SettingsPage />} />
+          <Route path="/settings/manage-products" element={<SettingsPage />} />
+          <Route path="/settings/security" element={<SettingsPage />} />
+          <Route path="/settings/about-us" element={<SettingsPage />} />
         </Routes>
       </Box>
     </BrowserRouter>

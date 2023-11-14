@@ -20,7 +20,6 @@ export const SearchBar = () => {
     md: "300px",
     lg: "400px",
     xl: "500px",
-    // 2xl: "",
   });
 
   return (

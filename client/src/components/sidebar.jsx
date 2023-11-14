@@ -41,7 +41,7 @@ export const Sidebar = () => {
     {
       icon: <FiSettings fontSize={iconSize} />,
       name: "Setting",
-      path: "/settings",
+      path: "/settings/my-profile",
     },
   ];
 
