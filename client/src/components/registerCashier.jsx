@@ -74,7 +74,7 @@ export default function RegisterCashier({ onClose }) {
                 <Form>
                     <Stack spacing={4}>
                         <FormControl id="fullname" isRequired>
-                            <FormLabel>First Name</FormLabel>
+                            <FormLabel>Fullname</FormLabel>
                             <Field
                                 as={Input}
                                 id="fullname"

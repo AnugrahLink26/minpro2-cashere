@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       urlProductImg: {
         type: DataTypes.STRING
-        // allowNull: false,
       },
       productPrice: {
         type: DataTypes.INTEGER,
@@ -38,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
-      },
+        },
     },
     {
       sequelize,
