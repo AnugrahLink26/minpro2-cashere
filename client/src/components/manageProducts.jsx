@@ -3,10 +3,35 @@ import {
   Heading,
   Container,
   Text,
-  Stack
+  Stack,
+  Center,
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  useBreakpointValue,
 } from '@chakra-ui/react'
+import AddProduct from './addProduct'
+import { FiPlus } from "react-icons/fi";
+import React from "react";
 
 export function ManageProducts() {
+  const modalSize = useBreakpointValue({
+    base: "full",
+    sm: "sm",
+    md: "md",
+    lg: "lg",
+    xl: "xl",
+  });
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const finalRef = React.useRef(null);
+
   return (
     <>
       <Container maxW={'3xl'}>
@@ -18,12 +43,48 @@ export function ManageProducts() {
           <Heading
             fontWeight={600}
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-            lineHeight={'110%'}>
-            Welcome to <spacing/>
-            <Text as={'span'} color={'#DB1783'}>
-              Manage Products Page
-            </Text>
+            lineHeight={'110%'}
+          >
+            Welcome to
           </Heading>
+          <Heading fontWeight={600}
+            fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
+            lineHeight={'110%'}
+            as={'span'}
+            color={'#DB1783'}
+          >
+            Manage Products Page
+          </Heading>
+          <Center>
+            <Button
+              bg={"#DB1783"}
+              color={"white"}
+              variant="solid"
+              leftIcon={<FiPlus />}
+              onClick={onOpen}
+              _hover={{
+                bg: "#FFD4E9",
+                color: "#DB1783",
+              }}
+            >
+              Add Product
+            </Button>
+            <Modal
+              finalFocusRef={finalRef}
+              isOpen={isOpen}
+              onClose={onClose}
+              size={modalSize}
+              isCentered
+            >
+              <ModalOverlay />
+              <ModalContent bg={"white"}>
+                <ModalCloseButton />
+                <ModalBody>
+                  <AddProduct onClose={onClose} />
+                </ModalBody>
+              </ModalContent>
+            </Modal>
+          </Center>
         </Stack>
       </Container>
     </>
