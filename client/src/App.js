@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setData } from "./redux/userSlice";
+import { setProduct } from "./redux/productSlice";
 import { Box } from "@chakra-ui/react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { SettingsPage } from "./pages/settingsPage";
@@ -26,8 +27,19 @@ function App() {
     }
   };
 
+  const getProduct = async () => {
+    try {
+      const result = await axios.get(`http://localhost:2000/products`);
+      console.log(result.data);
+      dispatch(setProduct(result.data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     keepLogIn();
+    getProduct();
   }, []);
 
   return (

@@ -1,14 +1,16 @@
 import burger from "../assets/burger.jpg";
-import {
-  AiOutlineArrowDown,
-} from "react-icons/ai";
+import { AiOutlineArrowDown } from "react-icons/ai";
 import { Image, Text, Box, Flex, Grid, GridItem } from "@chakra-ui/react";
 import { DropBar } from "./dropbar";
 import { MobileHeader } from "./mobileHeader";
 import { motion } from "framer-motion";
 import { Category } from "./category";
+import { useSelector } from "react-redux";
 
 export const OrderMenu = () => {
+  const productList = useSelector((state) => state.product.value);
+  console.log(productList);
+  console.log(productList.urlProductImg);
   return (
     <>
       <motion.div
@@ -75,69 +77,78 @@ export const OrderMenu = () => {
               mt={{ base: "15%", md: "0%" }}
               columnGap={{ base: "6%", md: "15px" }}
             >
-              <GridItem
-                as={"Box"}
-                position={"relative"}
-                mt={{ base: "0", md: "20px" }}
-                mb={{ base: "30%", md: "0" }}
-                display={"flex"}
-                flexDirection={"column"}
-                alignItems={"center"}
-                bg={"white"}
-                w={{
-                  base: "170px",
-                  md: "200px",
-                  lg: "170px",
-                  xl: "200px",
-                  "2xl": "200px",
-                }}
-                pt={{ base: "0", md: "10px" }}
-                rounded={{ base: "3xl", md: "md" }}
-                shadow={"2xl"}
-                pb={"8px"}
-              >
-                <Box display={"flex"} justifyContent={"center"}>
-                  <Image
-                    src={burger}
-                    position={{ base: "absolute", md: "block" }}
-                    top={{ base: "-10", md: "2.5" }}
-                    w={{
-                      base: "100px",
-                      md: "180px",
-                      lg: "150px",
-                      xl: "180px",
-                      "2xl": "180px",
-                    }}
-                    rounded={{ base: "full", md: "md" }}
-                    h={{
-                      base: "100px",
-                      md: "140px",
-                      xl: "120px",
-                      "2xl": "120px",
-                    }}
-                  />
-                </Box>
-                <Box
-                  w={{
-                    base: "130px",
-                    md: "180px",
-                    lg: "150px",
-                    xl: "180px",
-                    "2xl": "180px",
-                  }}
-                  mt={{ base: "40%", md: "70%" }}
-                  pb={"10px"}
-                  display={"flex"}
-                  flexDirection={"column"}
-                  justifyContent={"start"}
-                >
-                  <Text fontWeight={"bold"}>Burger</Text>
-                  <Text fontSize={"xs"}>Our delicious pure beef patty.</Text>
-                  <Text fontWeight={"bold"} color={"orange"}>
-                    $5.48
-                  </Text>
-                </Box>
-              </GridItem>
+              {productList?.map(
+                (item) => (
+                  console.log(item.urlProductImg),
+                  (
+                    <GridItem
+                      as={"Box"}
+                      position={"relative"}
+                      mt={{ base: "0", md: "20px" }}
+                      mb={{ base: "30%", md: "0" }}
+                      display={"flex"}
+                      flexDirection={"column"}
+                      alignItems={"center"}
+                      bg={"white"}
+                      w={{
+                        base: "170px",
+                        md: "200px",
+                        lg: "170px",
+                        xl: "200px",
+                        "2xl": "200px",
+                      }}
+                      pt={{ base: "0", md: "10px" }}
+                      rounded={{ base: "3xl", md: "md" }}
+                      shadow={"2xl"}
+                      pb={"8px"}
+                    >
+                      <Box display={"flex"} justifyContent={"center"}>
+                        <Image
+                          src={`http://localhost:2000/${item.urlProductImg}`}
+                          position={{ base: "absolute", md: "block" }}
+                          top={{ base: "-10", md: "2.5" }}
+                          w={{
+                            base: "100px",
+                            md: "180px",
+                            lg: "150px",
+                            xl: "180px",
+                            "2xl": "180px",
+                          }}
+                          rounded={{ base: "full", md: "md" }}
+                          h={{
+                            base: "100px",
+                            md: "140px",
+                            xl: "120px",
+                            "2xl": "120px",
+                          }}
+                        />
+                      </Box>
+                      <Box
+                        w={{
+                          base: "130px",
+                          md: "180px",
+                          lg: "150px",
+                          xl: "180px",
+                          "2xl": "180px",
+                        }}
+                        mt={{ base: "40%", md: "70%" }}
+                        pb={"10px"}
+                        display={"flex"}
+                        flexDirection={"column"}
+                        justifyContent={"start"}
+                      >
+                        <Text fontWeight={"bold"}>{item.productName}</Text>
+                        <Text fontSize={"xs"}>
+                          Our delicious pure beef patty.
+                        </Text>
+                        <Text fontWeight={"bold"} color={"orange"}>
+                          $5.48
+                        </Text>
+                      </Box>
+                    </GridItem>
+                  )
+                )
+              )}
             </Grid>
           </Box>
         </Box>
