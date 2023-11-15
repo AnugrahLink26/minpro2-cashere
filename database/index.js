@@ -2,7 +2,12 @@ const express = require("express");
 const PORT = 2000;
 const db = require("./models");
 const cors = require("cors");
-const { userRouter, adminRouter, categoriesRouter } = require("./routers");
+const {
+  userRouter,
+  adminRouter,
+  categoriesRouter,
+  addProductRouter,
+} = require("./routers");
 require("dotenv").config();
 
 const app = express();
@@ -19,6 +24,7 @@ app.use("/api", (req, res) => {
 app.use("/users", userRouter);
 app.use("/admins", adminRouter);
 app.use("/categories", categoriesRouter);
+app.use("/products", addProductRouter);
 
 app.listen(PORT, () => {
   // db.sequelize.sync({ alter: true })

@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Products extends Model {
     /**
@@ -12,37 +10,40 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Products.belongsTo(models.ProductCategories),
-      Products.hasMany(models.TransactionDetails)
+      Products.hasMany(models.TransactionDetails);
     }
   }
-  Products.init({
-    productName: {
-      type: DataTypes.STRING,
-      allowNull: false,
+  Products.init(
+    {
+      productName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      urlProductImg: {
+        type: DataTypes.STRING
+        // allowNull: false,
+      },
+      productPrice: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      productStock: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      productDescription: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
     },
-    urlProductImg: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    productPrice: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    productStock: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    productDescription: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    isActive: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
+    {
+      sequelize,
+      modelName: "Products",
     }
-  }, {
-    sequelize,
-    modelName: 'Products',
-  });
+  );
   return Products;
 };

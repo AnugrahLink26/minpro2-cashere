@@ -2,7 +2,13 @@ import { Box, Center, Flex, Grid, GridItem, Heading } from "@chakra-ui/react";
 import { Sidebar } from "../components/sidebar";
 import { SearchBar } from "../components/searchBar";
 import { SettingsMenu } from "../components/settingsMenu";
-import { BrowserRouter as Router, Route, useNavigate, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  useNavigate,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import { MyProfile } from "../components/myProfile";
 import { ManageCashiers } from "../components/manageCashiers";
 import { ManageProducts } from "../components/manageProducts";
@@ -13,15 +19,15 @@ const Components = ({ match }) => {
   const { path } = match;
 
   switch (path) {
-    case '/settings/my-profile':
+    case "/settings/my-profile":
       return <MyProfile />;
-    case '/settings/manage-cashiers':
+    case "/settings/manage-cashiers":
       return <ManageCashiers />;
-    case '/settings/manage-products':
+    case "/settings/manage-products":
       return <ManageProducts />;
-    case '/settings/security':
+    case "/settings/security":
       return <Security />;
-    case '/settings/about-us':
+    case "/settings/about-us":
       return <AboutUs />;
     default:
       return null;
@@ -29,16 +35,16 @@ const Components = ({ match }) => {
 };
 
 export const SettingsPage = () => {
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
   const location = useLocation();
-  const { pathname } = location
+  const { pathname } = location;
 
   const navigate = useNavigate();
 
   const handleNavigation = (path) => {
     navigate(path);
   };
-  
+
   return (
     <Grid
       templateAreas={{
@@ -52,9 +58,10 @@ export const SettingsPage = () => {
       }}
       gridTemplateColumns={{
         base: "0px 0px 1fr",
-        md: "90px 250px 1fr",
-        lg: "120px 250px 1fr",
-        xl: "150px 350px 1fr",
+        md: "60px 280px 1fr",
+        lg: "90px 250px 1fr",
+        xl: "50px 300px 1fr",
+        "2xl": "150px 350px 1fr",
       }}
     >
       <Box
@@ -79,33 +86,41 @@ export const SettingsPage = () => {
       >
         <Sidebar />
       </Box>
-      <Box 
+      <Box
         display={{ base: "none", md: "block" }}
-        bg={'white'}
-        m={'1rem'}
-        alignItems={'center'}
-        border={'1px solid'}
+        px={"6px"}
+        bg={"white"}
+        m={"1rem"}
+        pb={"9%"}
+        mt={"6.9%"}
+        ml={"110px"}
+        alignItems={"center"}
+        border={"1px solid"}
         borderColor={"gray.200"}
         rounded={"xl"}
         as={GridItem}
         area={"subnav"}
-        position={"sticky"}
-        zIndex={1}
+        position={"fixed"}
+        // zIndex={1}
       >
         <SettingsMenu onNavigate={handleNavigation} />
       </Box>
-      <Box 
+      <Box
         display={{ base: "none", md: "flex" }}
-        bg={'white'}
-        my={'1rem'}
-        mr={'1rem'}
-        borderBottom={"1px solid"} 
+        top={"11.3%"}
+        w={"900px"}
+        minH={"86.1vh"}
+        right={"0"}
+        bg={"white"}
+        my={"1rem"}
+        mr={"1rem"}
+        borderBottom={"1px solid"}
         borderColor={"gray.200"}
         rounded={"xl"}
         as={GridItem}
         area={"main"}
-        position={"sticky"}
-        zIndex={1}
+        position={"fixed"}
+        // zIndex={1}
       >
         <Components match={{ path: pathname }} />
       </Box>
