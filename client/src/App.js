@@ -7,6 +7,7 @@ import { Box } from "@chakra-ui/react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { SettingsPage } from "./pages/settingsPage";
 import { Category } from "./components/category";
+import { AddProduct } from "./components/addProduct";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -39,6 +40,10 @@ function App() {
           <Route path="/settings/manage-products" element={<SettingsPage />} />
           <Route path="/settings/security" element={<SettingsPage />} />
           <Route path="/settings/about-us" element={<SettingsPage />} />
+          <Route
+            path="/settings/manage-product/add-product"
+            element={<AddProduct />}
+          />
         </Routes>
       </Box>
     </BrowserRouter>

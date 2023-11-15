@@ -14,6 +14,7 @@ import { FiHome, FiSettings, FiLogOut } from "react-icons/fi";
 import { VscGraph } from "react-icons/vsc";
 
 import logo1 from "../assets/logo1.png";
+import { MotionLeft } from "./motion";
 
 export const Sidebar = () => {
   const iconSize = useBreakpointValue({
@@ -75,16 +76,7 @@ export const Sidebar = () => {
           >
             {menuList.map((item, index) => (
               <Link href={item.path} _hover={{ textDecoration: "none" }}>
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.1,
-                    ease: "easeInOut",
-                  }}
-                >
+                <MotionLeft index={index}>
                   <Box
                     rowGap={"0.5"}
                     display={"flex"}
@@ -115,20 +107,12 @@ export const Sidebar = () => {
                       {item.name}
                     </Box>
                   </Box>
-                </motion.div>
+                </MotionLeft>
               </Link>
             ))}
           </Container>
           <Spacer />
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: 0.5,
-              delay: menuList.length * 0.1,
-              ease: "easeInOut",
-            }}
-          >
+          <MotionLeft index={menuList.length}>
             <Box
               display={"flex"}
               flexDirection={"column"}
@@ -155,7 +139,7 @@ export const Sidebar = () => {
                 Log Out
               </Box>
             </Box>
-          </motion.div>
+          </MotionLeft>
         </Flex>
       </Grid>
     </Center>
