@@ -27,6 +27,6 @@ app.use("/categories", categoriesRouter);
 app.use("/products", addProductRouter);
 
 app.listen(PORT, () => {
-  // db.sequelize.sync({ alter: true })
+//   db.sequelize.sync({ alter: true })
   console.log(`Server running on port: ${PORT}`);
 });

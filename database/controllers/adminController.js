@@ -9,11 +9,13 @@ const jwt = require('jsonwebtoken');
 
 module.exports = 
 {
-    getAll: async (req, res) => 
+    getCashier: async (req, res) => 
     {
         try 
         {
-            const result = await User.findAll();
+            const result = await User.findAll({
+                where: { isAdmin: false }
+            });
             res.status(200).send(result);
         } 
         catch (error) 
@@ -68,6 +70,33 @@ module.exports =
         } catch (error) {
             console.log(error);
             res.status(400).send({ message: "Failed Register"});
+        }
+    },
+
+    updateStatusCashier: async (req, res) => {
+        try {
+            const { isVerified } = req.body
+            const statusUpdate = await User.update(
+                { isVerified },
+                { where: { id: req.params.id } }
+            )
+            return res.status(200).send(statusUpdate)
+        } catch (error) {
+            console.log(error);
+            res.status(400).send({ message: "Failed Change Status"});
+        }
+    },
+
+    deleteCashier: async (req, res) => {
+        try {
+            await User.destroy({
+                where: {
+                    id: req.params.id,
+                },
+            });
+            res.status(200).send('Cashier Deleted');            
+        } catch (error) {
+            console.log(error);
         }
     }
 };
