@@ -38,8 +38,6 @@ module.exports = {
         urlProductImg: req.file?.path,
       });
 
-      // console.log(resultProducts);
-
       return res.status(200).send({ message: "Create product successfully" });
     } catch (err) {
       console.log(err);

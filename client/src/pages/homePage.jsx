@@ -1,19 +1,28 @@
-import { Box, Center, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Center, Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
 import { Sidebar } from "../components/sidebar";
 import { OrderMenu } from "../components/orderMenu";
 import { CheckOut } from "../components/checkout";
 import { SearchBar } from "../components/searchBar";
 import { NavProfile } from "../components/navProfile";
-import { Welcome } from "../components/welcome";
-import { Login } from "../components/login";
+import { Welcome } from "./welcome";
+import { Login } from "./login";
+import { useDispatch, useSelector } from "react-redux";
+import { startTransaction } from "../redux/transactionSlice";
+import { Payment } from "../components/payment";
 
 export const HomePage = () => {
   const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
+  const isTransaction = useSelector((state) => state.transaction.isTransaction)
+
+  const handleStartTransaction = () => {
+    dispatch(startTransaction());
+  }
 
   return (
     <Grid
       templateAreas={{
-        base: `"nav header header"
+        base: `"nav header footer"
                 "nav main footer"
                 "nav main footer"`,
       }}
@@ -60,18 +69,6 @@ export const HomePage = () => {
       >
         {token ? <OrderMenu /> : <Welcome />}
       </Box>
-      {token ? (
-        <Box
-          display={{ base: "none", md: "block" }}
-          as={GridItem}
-          area={"footer"}
-          position={"sticky"}
-          bottom={"0px"}
-          bg={"white"}
-        >
-          <CheckOut />
-        </Box>
-      ) : (
         <Box
           display={{ base: "none", md: "block" }}
           as={GridItem}
@@ -79,13 +76,16 @@ export const HomePage = () => {
           position={"sticky"}
           borderLeft={"1px"}
           borderColor={"gray.200"}
+          h={'100vh'}
+          top={"0"}
           bg={"white"}
         >
-          <Center>
-            <Login />
-          </Center>
+          { token ? 
+            <CheckOut /> 
+            // <Payment />
+            : <Login /> 
+          }
         </Box>
-      )}
     </Grid>
   );
 };

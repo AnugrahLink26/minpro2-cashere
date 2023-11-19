@@ -6,7 +6,8 @@ const {
   userRouter,
   adminRouter,
   categoriesRouter,
-  addProductRouter,
+  productRouter,
+  transactionRouter
 } = require("./routers");
 require("dotenv").config();
 
@@ -24,9 +25,10 @@ app.use("/api", (req, res) => {
 app.use("/users", userRouter);
 app.use("/admins", adminRouter);
 app.use("/categories", categoriesRouter);
-app.use("/products", addProductRouter);
+app.use("/products", productRouter);
+app.use("/transactions", transactionRouter)
 
 app.listen(PORT, () => {
-//   db.sequelize.sync({ alter: true })
+  // db.sequelize.sync({ alter: true })
   console.log(`Server running on port: ${PORT}`);
 });
