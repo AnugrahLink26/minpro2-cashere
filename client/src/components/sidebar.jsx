@@ -24,7 +24,7 @@ export const Sidebar = () => {
   });
   const iconBoxSize = useBreakpointValue({
     base: "0px",
-    md: "30px",
+    md: "80px",
     lg: "90px",
     xl: "80px",
     "2xl": "100px",

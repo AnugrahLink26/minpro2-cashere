@@ -141,6 +141,8 @@ export const CheckOut = () => {
         </Stack>
       </Stack>
       <Box
+// Luthfi
+//      h={"26vh"}
         borderTop={"1px"}
         borderColor={"gray.200"}
         h={"15vh"}

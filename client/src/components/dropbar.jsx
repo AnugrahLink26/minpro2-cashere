@@ -1,10 +1,16 @@
 import { Box, Flex } from "@chakra-ui/react";
-
-import { GrFavorite } from "react-icons/gr";
-import { BsTicketPerforated, BsCart } from "react-icons/bs";
-import { FiHome } from "react-icons/fi";
+import { BsCart } from "react-icons/bs";
+import { FiHome, FiSettings } from "react-icons/fi";
+import { VscGraph } from "react-icons/vsc";
+import { useNavigate } from "react-router-dom";
 
 export const DropBar = () => {
+  const navigate = useNavigate();
+
+  const handleOnClick = () => {
+    navigate("/settings/my-profile");
+  };
+
   return (
     <Box
       as={Flex}
@@ -20,33 +26,38 @@ export const DropBar = () => {
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
+        cursor={"pointer"}
       >
         <FiHome />
-        All Menu
+        Home
       </Box>
       <Box
         fontWeight={"semibold"}
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
+        cursor={"pointer"}
+        onClick={handleOnClick}
       >
-        <GrFavorite />
-        Favorite
+        <FiSettings />
+        Settings
       </Box>
       <Box
         fontWeight={"semibold"}
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
+        cursor={"pointer"}
       >
-        <BsTicketPerforated />
-        Promo
+        <VscGraph />
+        Report
       </Box>
       <Box
         fontWeight={"semibold"}
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
+        cursor={"pointer"}
       >
         <BsCart />
         My Order

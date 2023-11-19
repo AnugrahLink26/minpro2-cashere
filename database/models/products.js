@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Products.belongsTo(models.ProductCategories),
-      Products.hasMany(models.TransactionDetails);
+        Products.hasMany(models.TransactionDetails);
     }
   }
   Products.init(
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       urlProductImg: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       productPrice: {
         type: DataTypes.INTEGER,
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
-        },
+      },
     },
     {
       sequelize,

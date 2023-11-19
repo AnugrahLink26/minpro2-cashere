@@ -21,7 +21,7 @@ module.exports = {
       },
     });
     const fileFilter = (req, file, cb) => {
-      const extFilter = ["jpg", "jpeg", "png"];
+      const extFilter = ["jpg", "jpeg", "png", "webp"];
       const checkExt = extFilter.includes(
         file.mimetype.split("/")[1].toLowerCase()
       );

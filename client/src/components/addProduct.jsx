@@ -1,21 +1,23 @@
 import {
-  FormControl,
-  FormLabel,
-  Input,
   Box,
   Stack,
   Button,
   Heading,
+  Input,
   Textarea,
   Img,
   Text,
   Flex,
+  Select,
+  FormControl,
+  FormLabel,
 } from "@chakra-ui/react";
-import bgFood from "../assets/bg-food.jpg";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import bgFood from "../assets/bg-food.jpg";
 
 const ProductSchema = Yup.object().shape({
   productName: Yup.string().required("Product name is required"),
@@ -27,6 +29,8 @@ const ProductSchema = Yup.object().shape({
 });
 
 export const AddProduct = () => {
+  const navigate = useNavigate();
+  const [categories, setCategories] = useState([]);
   const [imagePreview, setImagePreview] = useState(null);
 
   const handleImageChange = (e, setFieldValue) => {
@@ -41,6 +45,19 @@ export const AddProduct = () => {
       reader.readAsDataURL(file);
     }
   };
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`http://localhost:2000/categories`);
+        setCategories(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   const handleSubmit = async (data) => {
     console.log(data);
@@ -62,14 +79,22 @@ export const AddProduct = () => {
           },
         }
       );
+      navigate("/settings/manage-products");
       window.location.reload();
       console.log(postProduct);
     } catch (err) {
       console.log(err);
     }
   };
+
   return (
-    <Box bg={"white"} h={"auto"} rounded={"xl"} w={"80%"} mx={"auto"}>
+    <Box
+      bg={"white"}
+      h={{ md: "100vh", xl: "auto" }}
+      rounded={{ base: "none", md: "xl" }}
+      w={{ base: "100%", md: "80%" }}
+      mx={"auto"}
+    >
       <Stack px={6}>
         <Heading mt={"2%"} color={"#DB1783"}>
           Create Product
@@ -100,22 +125,23 @@ export const AddProduct = () => {
                       type="text"
                       variant="outline"
                       placeholder="Product name"
-                      style={{
-                        width: "475px",
-                      }}
+                      width={{ base: "185px", md: "322px", xl: "475px" }}
                     />
                   </FormControl>
                   <FormControl id="productCategory" isRequired>
                     <Field
-                      as={Input}
+                      as={Select}
                       name="productCategory"
-                      type="text"
                       variant="outline"
-                      placeholder="Product category"
-                      style={{
-                        width: "475px",
-                      }}
-                    />
+                      placeholder="Select product category"
+                      width={{ base: "185px", md: "322px", xl: "475px" }}
+                    >
+                      {categories.map((category) => (
+                        <option key={category.id} value={category.category}>
+                          {category.category}
+                        </option>
+                      ))}
+                    </Field>
                   </FormControl>
                 </Flex>
                 <Flex columnGap={"10px"} mx={"auto"}>
@@ -126,9 +152,7 @@ export const AddProduct = () => {
                       type="number"
                       variant="outline"
                       placeholder="Product Price"
-                      style={{
-                        width: "475px",
-                      }}
+                      width={{ base: "185px", md: "322px", xl: "475px" }}
                     />
                   </FormControl>
                   <FormControl id="productStock" isRequired>
@@ -138,9 +162,7 @@ export const AddProduct = () => {
                       type="number"
                       variant="outline"
                       placeholder="Product stock"
-                      style={{
-                        width: "475px",
-                      }}
+                      width={{ base: "185px", md: "322px", xl: "475px" }}
                     />
                   </FormControl>
                 </Flex>
@@ -156,7 +178,7 @@ export const AddProduct = () => {
                 <FormLabel>
                   <FormControl id="urlProductImg" isRequired>
                     <Box
-                      w={"75.3vw"}
+                      w={{ base: "89vw", md: "75.3vw" }}
                       h={"50vh"}
                       overflow={"hidden"}
                       border={"1px"}
@@ -178,13 +200,12 @@ export const AddProduct = () => {
                         left="50%"
                         transform="translate(-50%, -50%)"
                         color="gray.700"
-                        fontSize="2xl"
+                        fontSize={{ base: "xl", md: "2xl" }}
                         fontWeight="bold"
                       >
                         Upload your image
                       </Text>
                     </Box>
-
                     <Input
                       name="urlProductImg"
                       id="urlProductImg"

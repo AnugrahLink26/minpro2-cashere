@@ -114,7 +114,7 @@ export function ManageCashiers() {
                     <Switch
                       isChecked={cashier.isVerified}
                       onChange={() => handleSwitchChange(cashier.id, cashier.isVerified)}
-                    />
+                    /> 
                   </Td>
                 </Tr>
               ))

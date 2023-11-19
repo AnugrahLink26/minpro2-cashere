@@ -3,6 +3,8 @@ import { Sidebar } from "../components/sidebar";
 import { OrderMenu } from "../components/orderMenu";
 import { CheckOut } from "../components/checkout";
 import { SearchBar } from "../components/searchBar";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 import { NavProfile } from "../components/navProfile";
 import { Welcome } from "./welcome";
 import { Login } from "./login";
@@ -11,6 +13,8 @@ import { startTransaction } from "../redux/transactionSlice";
 import { Payment } from "../components/payment";
 
 export const HomePage = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState([]);
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const isTransaction = useSelector((state) => state.transaction.isTransaction)
@@ -18,6 +22,10 @@ export const HomePage = () => {
   const handleStartTransaction = () => {
     dispatch(startTransaction());
   }
+
+  const updateProduct = (data) => {
+    setProduct(data);
+  };
 
   return (
     <Grid
@@ -48,16 +56,17 @@ export const HomePage = () => {
         top={"0"}
         zIndex={1}
       >
-        <SearchBar />
+        <SearchBar updateProduct={updateProduct} />
       </Box>
       <Box
         display={{ base: "none", md: "block" }}
         as={GridItem}
+        w={{ md: "7%", xl: "4%", "2xl": "8%" }}
         area={"nav"}
-        h={"100vh"}
-        position={"sticky"}
-        top={"0"}
-        zIndex={1}
+        top={"0%"}
+        left={"0"}
+        position={"fixed"}
+        zIndex={"1"}
       >
         <Sidebar />
       </Box>
@@ -67,25 +76,20 @@ export const HomePage = () => {
         w={{ base: "100vw", md: "50vw", lg: "full" }}
         h={"100vh"}
       >
-        {token ? <OrderMenu /> : <Welcome />}
+        <OrderMenu id={id} products={product} />
       </Box>
-        <Box
-          display={{ base: "none", md: "block" }}
-          as={GridItem}
-          area={"footer"}
-          position={"sticky"}
-          borderLeft={"1px"}
-          borderColor={"gray.200"}
-          h={'100vh'}
-          top={"0"}
-          bg={"white"}
-        >
-          { token ? 
-            <CheckOut /> 
-            // <Payment />
-            : <Login /> 
-          }
-        </Box>
+      <Box
+        display={{ base: "none", md: "block" }}
+        as={GridItem}
+        area={"footer"}
+        position={"fixed"}
+        w={{ md: "28vw", xl: "23.4vw", "2xl": "30vw" }}
+        right={"0"}
+        bottom={"0"}
+        bg={"white"}
+      >
+        <CheckOut />
+      </Box>
     </Grid>
   );
 };
