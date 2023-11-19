@@ -66,7 +66,7 @@ export const SettingsPage = () => {
         md: "60px 280px 1fr",
         lg: "90px 250px 1fr",
         xl: "50px 300px 1fr",
-        "2xl": "150px 350px 1fr",
+        "2xl": "120px 350px 1fr",
       }}
     >
       <Box

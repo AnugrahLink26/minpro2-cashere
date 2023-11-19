@@ -9,20 +9,12 @@ import {
   Stack,
   Center,
   IconButton,
-  Drawer,
-  DrawerBody,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  useDisclosure,
-  DrawerCloseButton,
 } from "@chakra-ui/react";
 import { motion, useAnimation } from "framer-motion";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { AddIcon, MinusIcon, CloseIcon } from '@chakra-ui/icons'
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, incrementQuantity, decrementQuantity } from "../redux/cartSlice";
-import { Payment } from "./payment";
 
 const AnimatedGridItem = ({ children }) => {
   const controls = useAnimation();
@@ -41,8 +33,15 @@ const AnimatedGridItem = ({ children }) => {
 export const CheckOut = () => {
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart.items)
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = React.useRef()
+  const isTransaction = useSelector((state) => state.transaction.isTransaction)
+
+  const modalSize = useBreakpointValue({
+    base: "full",
+    sm: "sm",
+    md: "md",
+    lg: "lg",
+    xl: "xl",
+  });
 
   const handleRemoveFromCart = (itemId) => {
     dispatch(removeFromCart(itemId));
@@ -56,12 +55,12 @@ export const CheckOut = () => {
     dispatch(decrementQuantity(itemId));
   };
 
-  const totalPrice = cartItems.reduce((acc, cartItem) => acc + cartItem.subTotal, 0)
+  const total = cartItems.reduce((acc, cartItem) => acc + cartItem.subTotal, 0)
   
   return (
     <Flex bg={"white"} flexDirection={"column"} h={'100vh'}>
       <Stack>
-        <Stack h={"85vh"} overflowY={"auto"} rowGap={"2%"}>
+        <Stack h={"75vh"} overflowY={"auto"} rowGap={"2%"}>
           {cartItems?.map((cartItem) => (
             <Grid w={"100%"}>
               <AnimatedGridItem>
@@ -141,38 +140,20 @@ export const CheckOut = () => {
         </Stack>
       </Stack>
       <Box
-// Luthfi
-//      h={"26vh"}
         borderTop={"1px"}
         borderColor={"gray.200"}
-        h={"15vh"}
+        h={"16vh"}
       >
-        <Flex justifyContent={"space-between"} alignItems={'center'} px={"5%"} h={'5vh'}>
-          <Text fontWeight={"semibold"}>Total Price</Text>
+        <Flex justifyContent={"space-between"} px={"5%"} mt={"2%"}>
+          <Text fontWeight={"semibold"}>Total</Text>
           <Text fontWeight={"bold"}>
-            {totalPrice.toLocaleString("id-ID", {style: "currency", currency: "IDR", minimumFractionDigits: 0})}
+            {total.toLocaleString("id-ID", {style: "currency", currency: "IDR", minimumFractionDigits: 0})}
           </Text>
         </Flex>
         <Flex justifyContent={"center"} alignItems={"center"}>
-          <Button bg={"#DB1783"} color={'white'} px={"80px"} my={'2%'} ref={btnRef} onClick={onOpen}>
+          <Button bg={"#DB1783"} color={'white'} px={"80px"} my={'2%'}>
             Checkout
           </Button>
-          <Drawer
-            isOpen={isOpen}
-            placement='right'
-            onClose={onClose}
-            finalFocusRef={btnRef}
-            size={'md'}
-          >
-            <DrawerOverlay />
-            <DrawerContent>
-              <DrawerCloseButton />
-              <DrawerHeader>Confirm Payment</DrawerHeader>
-              <DrawerBody>
-                <Payment />
-              </DrawerBody>
-            </DrawerContent>
-          </Drawer>
         </Flex>
       </Box>
     </Flex>

@@ -11,7 +11,6 @@ import {
 import { Image } from "@chakra-ui/react";
 import { FiHome, FiSettings, FiLogOut } from "react-icons/fi";
 import { VscGraph } from "react-icons/vsc";
-
 import logo1 from "../assets/logo1.png";
 import { MotionLeft } from "./motion";
 

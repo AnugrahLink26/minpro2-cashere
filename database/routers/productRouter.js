@@ -22,5 +22,6 @@ router.patch(
 router.patch("/status/:id", productController.updateProductStatus);
 router.get("/:id", productController.getById);
 router.delete("/:id", productController.deleteProducts);
+router.patch("/:id", productController.updateProducts);
 
 module.exports = router;

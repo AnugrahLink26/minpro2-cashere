@@ -17,16 +17,16 @@ module.exports = (sequelize, DataTypes) => {
   }
   Transactions.init({
     payment: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
     },
     totalPrice: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
     },
     change: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
+    },
+    customerName: {
+      type: DataTypes.STRING
     },
   }, {
     sequelize,

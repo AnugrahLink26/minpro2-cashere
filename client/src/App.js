@@ -4,13 +4,34 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setData } from "./redux/userSlice";
 import { Box } from "@chakra-ui/react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Route, Routes, BrowserRouter } from "react-router-dom";
 import { SettingsPage } from "./pages/settingsPage";
 import { Category } from "./components/manageCategory/category";
 import { AddProduct } from "./components/addProduct";
 import { UpdateProduct } from "./components/updateProduct";
 import { ModalDelete } from "./components/modalDelete";
 import { ManageCategory } from "./components/manageCategory/manageCategory";
+import { Welcome } from "./pages/welcome";
+import { Login } from "./pages/login";
+import { Required } from "./components/required";
+
+const router = createBrowserRouter([
+  // { path: "/verify/:token", element: <Verify /> },
+  { path: "/", element: <Welcome /> },
+  { path: "/login", element: <Login /> },
+  {  
+    element: <Required />,
+    children: [
+      { path: "/home", element: <HomePage /> },
+      { path: "/settings/my-profile", element: <SettingsPage /> },
+      { path: "/settings/manage-cashiers", element: <SettingsPage /> },
+      { path: "/settings/manage-products", element: <SettingsPage /> },
+      { path: "/settings/security", element: <SettingsPage /> },
+      { path: "/settings/about-us", element: <SettingsPage /> },
+      { path: "/settings/manage-product/add-product", element: <AddProduct /> }
+    ]
+  },
+])
 
 function App() {
   const token = localStorage.getItem("token");
@@ -34,8 +55,9 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Box bg={"#F1F3F4"}>
+    <Box bg={"#F1F3F4"}>
+      <RouterProvider router={router} />
+      {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/category/A-Z" element={<HomePage />} />
@@ -60,8 +82,8 @@ function App() {
             element={<AddProduct />}
           />
         </Routes>
-      </Box>
-    </BrowserRouter>
+      </BrowserRouter> */}
+    </Box>
   );
 }
 

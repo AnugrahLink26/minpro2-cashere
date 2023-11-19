@@ -27,6 +27,7 @@ import {
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
+import { FiPlus } from "react-icons/fi"
 
 export function ManageCashiers() {
   const [cashierData, setCashierData] = useState([])
@@ -141,6 +142,21 @@ export function ManageCashiers() {
           </ModalFooter>
         </ModalContent>
       </Modal>
+        <Center>
+          <Button
+            bg={"#DB1783"}
+            color={"white"}
+            variant="solid"
+            leftIcon={<FiPlus />}
+            onClick={onOpen}
+            _hover={{
+              bg: "#FFD4E9",
+              color: "#DB1783",
+            }}
+          >
+            Cashier
+          </Button>
+        </Center>
     </Box>
   )
 }

@@ -7,6 +7,7 @@ const {
   adminRouter,
   categoriesRouter,
   productRouter,
+  transactionRouter
 } = require("./routers");
 require("dotenv").config();
 
@@ -25,6 +26,7 @@ app.use("/users", userRouter);
 app.use("/admins", adminRouter);
 app.use("/categories", categoriesRouter);
 app.use("/products", productRouter);
+app.use("/transactions", transactionRouter)
 
 app.listen(PORT, () => {
   // db.sequelize.sync({ alter: true })

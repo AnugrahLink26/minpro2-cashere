@@ -1,17 +1,27 @@
-import { Box, Center, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Center, Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
 import { Sidebar } from "../components/sidebar";
 import { OrderMenu } from "../components/orderMenu";
 import { CheckOut } from "../components/checkout";
 import { SearchBar } from "../components/searchBar";
-import { Welcome } from "../components/welcome";
-import { Login } from "../components/login";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { NavProfile } from "../components/navProfile";
+import { Welcome } from "./welcome";
+import { Login } from "./login";
+import { useDispatch, useSelector } from "react-redux";
+import { startTransaction } from "../redux/transactionSlice";
+import { Payment } from "../components/payment";
 
 export const HomePage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
+  const isTransaction = useSelector((state) => state.transaction.isTransaction)
+
+  const handleStartTransaction = () => {
+    dispatch(startTransaction());
+  }
 
   const updateProduct = (data) => {
     setProduct(data);
@@ -20,7 +30,7 @@ export const HomePage = () => {
   return (
     <Grid
       templateAreas={{
-        md: `"nav header header"
+        base: `"nav header footer"
                 "nav main footer"
                 "nav main footer"`,
       }}
@@ -66,36 +76,20 @@ export const HomePage = () => {
         w={{ base: "100vw", md: "50vw", lg: "full" }}
         h={"100vh"}
       >
-        {token ? <OrderMenu id={id} products={product} /> : <Welcome />}
+        <OrderMenu id={id} products={product} />
       </Box>
-      {token ? (
-        <Box
-          display={{ base: "none", md: "block" }}
-          as={GridItem}
-          area={"footer"}
-          position={"fixed"}
-          w={{ md: "28vw", xl: "23.4vw", "2xl": "30vw" }}
-          right={"0"}
-          bottom={"0"}
-          bg={"white"}
-        >
-          <CheckOut />
-        </Box>
-      ) : (
-        <Box
-          display={{ base: "none", md: "block" }}
-          as={GridItem}
-          area={"footer"}
-          position={"sticky"}
-          borderLeft={"1px"}
-          borderColor={"gray.200"}
-          bg={"white"}
-        >
-          <Center>
-            <Login />
-          </Center>
-        </Box>
-      )}
+      <Box
+        display={{ base: "none", md: "block" }}
+        as={GridItem}
+        area={"footer"}
+        position={"fixed"}
+        w={{ md: "28vw", xl: "23.4vw", "2xl": "30vw" }}
+        right={"0"}
+        bottom={"0"}
+        bg={"white"}
+      >
+        <CheckOut />
+      </Box>
     </Grid>
   );
 };

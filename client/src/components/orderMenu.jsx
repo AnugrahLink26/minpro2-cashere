@@ -6,9 +6,17 @@ import { Category } from "./manageCategory/category";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { SortCategory } from "./sortCategory";
+import { AiOutlineArrowDown } from "react-icons/ai";
+import { Image, Text, Box, Flex, Grid, GridItem, Button } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, incrementQuantity, updateSubTotal } from "../redux/cartSlice";
 
 export const OrderMenu = ({ id, products }) => {
   const [product, setProduct] = useState([]);
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.product.value);
+  const cartItems = useSelector((state) => state.cart.items)
+  
   const getProduct = async () => {
     let url = `http://localhost:2000/products`;
     try {
@@ -41,6 +49,16 @@ export const OrderMenu = ({ id, products }) => {
       console.log(err);
     }
   };
+  
+  const handleAddToCart = (product) => {
+    const existingItem = cartItems.find((item) => item.id === product.id);
+
+    if (existingItem) {
+      dispatch(incrementQuantity(product.id));
+    } else {
+      dispatch(addToCart({ ...product, quantity: 1, subTotal: product.productPrice }));
+    }
+  };
 
   useEffect(() => {
     if (
@@ -54,6 +72,7 @@ export const OrderMenu = ({ id, products }) => {
       getProduct();
     }
   }, [id]);
+  
   return (
     <>
       <motion.div
@@ -117,6 +136,7 @@ export const OrderMenu = ({ id, products }) => {
                 md: "repeat(2,1fr)",
                 lg: "repeat(4, 1fr)",
                 xl: "repeat(4,1fr)",
+                '2xl': "repeat(5,1fr)",
               }}
               ml={{ base: "3.5%", md: "12%", lg: "2%", xl: "35px" }}
               mt={{ base: "20%", md: "0%" }}
@@ -151,6 +171,16 @@ export const OrderMenu = ({ id, products }) => {
                         src={`http://localhost:2000/${item.urlProductImg}`}
                         position={{ base: "absolute", md: "block" }}
                         top={{ base: "-10", md: "2.5" }}
+                        rounded={{ base: "full", md: "md" }}
+                        h={{
+                          base: "100px",
+                          md: "140px",
+                          xl: "120px",
+                          "2xl": "120px",
+                        }}
+                      />
+                    </Box>
+                      <Box
                         w={{
                           base: "100px",
                           md: "180px",
@@ -184,11 +214,42 @@ export const OrderMenu = ({ id, products }) => {
                       <Text fontWeight={"bold"}>{item.productName}</Text>
                       <Text fontSize={"md"}>{item.productDescription}</Text>
                       <Text fontWeight={"bold"} color={"orange"}>
-                        Rp{item.productPrice}
+                        {item.productPrice.toLocaleString("id-ID", {style: "currency", currency: "IDR", minimumFractionDigits: 0})}
                       </Text>
+                      <Text fontWeight={"bold"} fontSize={'sm'}> Stock: {item.productStock} </Text>
+                      <Button
+                        colorScheme="teal"
+                        size="sm"
+                        mt={2}
+                        onClick={() => handleAddToCart(item)}
+                      >
+                        Add to Cart
+                      </Button>
                     </Box>
                   </GridItem>
                 ))}
+                        mt={{ base: "40%", md: "70%" }}
+                        pb={"10px"}
+                        display={"flex"}
+                        flexDirection={"column"}
+                        justifyContent={"start"}
+                      >
+                        <Text fontWeight={"bold"}> {item.productName} </Text>
+                        <Text fontWeight={"bold"} color={"orange"}> {item.productPrice.toLocaleString("id-ID", {style: "currency", currency: "IDR", minimumFractionDigits: 0})} </Text>
+                        <Text fontWeight={"bold"} fontSize={'sm'}> Stock: {item.productStock} </Text>
+                        <Button
+                          colorScheme="teal"
+                          size="sm"
+                          mt={2}
+                          onClick={() => handleAddToCart(item)}
+                        >
+                          Add to Cart
+                        </Button>
+                      </Box>
+                    </GridItem>
+                  )
+                )
+              )}
             </Grid>
           </Box>
         </Box>

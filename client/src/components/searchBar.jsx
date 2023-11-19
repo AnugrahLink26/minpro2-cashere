@@ -80,7 +80,7 @@ export const SearchBar = ({ updateProduct }) => {
           />
         </InputGroup>
       </Center>
-      <Spacer />
+      {/* <Spacer />
       <Flex
         h={"50px"}
         px={"10px"}
@@ -93,7 +93,7 @@ export const SearchBar = ({ updateProduct }) => {
       />
       <Center width={profileSize}>
         <NavProfile />
-      </Center>
+      </Center> */}
     </Flex>
   );
 };
