@@ -29,13 +29,13 @@ const AnimatedGridItem = ({ children }) => {
 
 export const CheckOut = () => {
   return (
-    <Flex bg={"white"} flexDirection={"column"} mt={"20%"}>
+    <Flex bg={"white"} mb={{ md: "30px", lg: "0" }} flexDirection={"column"}>
       <Flex
         borderLeft={"1px"}
         flexDirection={"column"}
         borderColor={"gray.200"}
       >
-        <Text mt={{ md: "20%", lg: "5%" }} ml={"8%"} fontWeight={"bold"}>
+        <Text mt={{ md: "20%", lg: "8%" }} ml={"8%"} fontWeight={"bold"}>
           Current Order
         </Text>
 
@@ -68,12 +68,12 @@ export const CheckOut = () => {
         </Stack>
       </Flex>
       <Box
-        h={"22vh"}
+        h={"26vh"}
         borderTop={"1px"}
         borderLeft={"1px"}
         borderColor={"gray.200"}
       >
-        <Flex justifyContent={"space-between"} px={"20px"} mt={"7%"}>
+        <Flex justifyContent={"space-between"} px={"20px"} mt={"10%"}>
           <Text>Subtotal</Text>
           <Text>$67.81</Text>
         </Flex>

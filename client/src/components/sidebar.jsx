@@ -8,7 +8,6 @@ import {
   Spacer,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { motion } from "framer-motion";
 import { Image } from "@chakra-ui/react";
 import { FiHome, FiSettings, FiLogOut } from "react-icons/fi";
 import { VscGraph } from "react-icons/vsc";
@@ -26,7 +25,7 @@ export const Sidebar = () => {
   });
   const iconBoxSize = useBreakpointValue({
     base: "0px",
-    md: "30px",
+    md: "80px",
     lg: "90px",
     xl: "80px",
     "2xl": "100px",

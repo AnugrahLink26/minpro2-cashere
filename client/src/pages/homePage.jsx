@@ -3,17 +3,24 @@ import { Sidebar } from "../components/sidebar";
 import { OrderMenu } from "../components/orderMenu";
 import { CheckOut } from "../components/checkout";
 import { SearchBar } from "../components/searchBar";
-import { NavProfile } from "../components/navProfile";
 import { Welcome } from "../components/welcome";
 import { Login } from "../components/login";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 export const HomePage = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState([]);
   const token = localStorage.getItem("token");
+
+  const updateProduct = (data) => {
+    setProduct(data);
+  };
 
   return (
     <Grid
       templateAreas={{
-        base: `"nav header header"
+        md: `"nav header header"
                 "nav main footer"
                 "nav main footer"`,
       }}
@@ -39,16 +46,17 @@ export const HomePage = () => {
         top={"0"}
         zIndex={1}
       >
-        <SearchBar />
+        <SearchBar updateProduct={updateProduct} />
       </Box>
       <Box
         display={{ base: "none", md: "block" }}
         as={GridItem}
+        w={{ md: "7%", xl: "4%", "2xl": "8%" }}
         area={"nav"}
-        h={"100vh"}
-        position={"sticky"}
-        top={"0"}
-        zIndex={1}
+        top={"0%"}
+        left={"0"}
+        position={"fixed"}
+        zIndex={"1"}
       >
         <Sidebar />
       </Box>
@@ -58,15 +66,17 @@ export const HomePage = () => {
         w={{ base: "100vw", md: "50vw", lg: "full" }}
         h={"100vh"}
       >
-        {token ? <OrderMenu /> : <Welcome />}
+        {token ? <OrderMenu id={id} products={product} /> : <Welcome />}
       </Box>
       {token ? (
         <Box
           display={{ base: "none", md: "block" }}
           as={GridItem}
           area={"footer"}
-          position={"sticky"}
-          bottom={"0px"}
+          position={"fixed"}
+          w={{ md: "28vw", xl: "23.4vw", "2xl": "30vw" }}
+          right={"0"}
+          bottom={"0"}
           bg={"white"}
         >
           <CheckOut />

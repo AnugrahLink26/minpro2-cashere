@@ -1,16 +1,59 @@
-import burger from "../assets/burger.jpg";
-import { AiOutlineArrowDown } from "react-icons/ai";
 import { Image, Text, Box, Flex, Grid, GridItem } from "@chakra-ui/react";
 import { DropBar } from "./dropbar";
 import { MobileHeader } from "./mobileHeader";
 import { motion } from "framer-motion";
-import { Category } from "./category";
-import { useSelector } from "react-redux";
+import { Category } from "./manageCategory/category";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { SortCategory } from "./sortCategory";
 
-export const OrderMenu = () => {
-  const productList = useSelector((state) => state.product.value);
-  console.log(productList);
-  console.log(productList.urlProductImg);
+export const OrderMenu = ({ id, products }) => {
+  const [product, setProduct] = useState([]);
+  const getProduct = async () => {
+    let url = `http://localhost:2000/products`;
+    try {
+      if (id && id !== "1") {
+        url += `/${id}`;
+      }
+      const result = await axios.get(url);
+      const activeProducts = result.data.filter((item) => item.isActive);
+      setProduct(activeProducts, products);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getSortProduct = async () => {
+    try {
+      let sortUrl = `http://localhost:2000/products`;
+      if (window.location.pathname === "/category/cheaper") {
+        sortUrl += "/cheaper";
+      } else if (window.location.pathname === "/category/expensive") {
+        sortUrl += "/expensive";
+      } else if (window.location.pathname === "/category/A-Z") {
+        sortUrl += "/A-Z";
+      } else if (window.location.pathname === "/category/Z-A") {
+        sortUrl += "/Z-A";
+      }
+      const result = await axios.get(sortUrl);
+      setProduct(result.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    if (
+      window.location.pathname === "/category/cheaper" ||
+      window.location.pathname === "/category/expensive" ||
+      window.location.pathname === "/category/A-Z" ||
+      window.location.pathname === "/category/Z-A"
+    ) {
+      getSortProduct();
+    } else {
+      getProduct();
+    }
+  }, [id]);
   return (
     <>
       <motion.div
@@ -32,38 +75,40 @@ export const OrderMenu = () => {
         <Box display={{ base: "block", md: "none" }}>
           <MobileHeader />
         </Box>
-        <Box bg={"#F1F3F4"} pt={"20px"} h={"full"}>
+        <Box
+          bg={"#F1F3F4"}
+          w={{ md: "131%", xl: "100%" }}
+          pt={"20px"}
+          h={"full"}
+        >
           <Box
-            w={{ base: "90%", md: "95%", lg: "95%" }}
+            w={{ base: "90%", md: "90%", lg: "95%" }}
             mx={{ base: "4%", md: "auto" }}
           >
             <Flex
-              w={{ base: "100%", md: "98%", lg: "90%" }}
+              w={{ base: "100%", md: "98%", lg: "90%", xl: "90%" }}
               mx={"auto"}
-              ml={{ md: "20%", lg: "auto", xl: "6.5%" }}
+              ml={{ md: "5%", lg: "auto", xl: "6.5%" }}
               columnGap={"2%"}
               justifyContent={"center"}
               overflowX={"auto"}
               overflowY={"hidden"}
               sx={{
-                "&::-webkit-scrollbar": {
-                  display: "none",
-                },
+                "&::-webkit-scrollbar": { display: "none" },
                 scrollbarWidth: "none",
               }}
             >
               <Category />
             </Flex>
             <Flex
-              mt={"4%"}
-              ml={{ base: "4%", md: "18%", lg: "0", xl: "45px" }}
+              mt={{ base: "30px", md: "4%" }}
+              ml={{ base: "6%", md: "10%", lg: "0", xl: "45px" }}
               w={{ base: "355px", md: "full", lg: "full", xl: "95%" }}
               justifyContent={"space-between"}
             >
               <Box>Order Menu</Box>
-              <Box display={"flex"} alignItems={"center"} columnGap={"3px"}>
-                <Text fontSize={"15px"}>Cheaper</Text>
-                <AiOutlineArrowDown />
+              <Box>
+                <SortCategory />
               </Box>
             </Flex>
             <Grid
@@ -73,82 +118,77 @@ export const OrderMenu = () => {
                 lg: "repeat(4, 1fr)",
                 xl: "repeat(4,1fr)",
               }}
-              ml={{ base: "3%", md: "21%", lg: "2%", xl: "35px" }}
-              mt={{ base: "15%", md: "0%" }}
+              ml={{ base: "3.5%", md: "12%", lg: "2%", xl: "35px" }}
+              mt={{ base: "20%", md: "0%" }}
               columnGap={{ base: "6%", md: "15px" }}
             >
-              {productList?.map(
-                (item) => (
-                  console.log(item.urlProductImg),
-                  (
-                    <GridItem
-                      as={"Box"}
-                      position={"relative"}
-                      mt={{ base: "0", md: "20px" }}
-                      mb={{ base: "30%", md: "0" }}
-                      display={"flex"}
-                      flexDirection={"column"}
-                      alignItems={"center"}
-                      bg={"white"}
-                      w={{
-                        base: "170px",
-                        md: "200px",
-                        lg: "170px",
-                        xl: "200px",
-                        "2xl": "200px",
-                      }}
-                      pt={{ base: "0", md: "10px" }}
-                      rounded={{ base: "3xl", md: "md" }}
-                      shadow={"2xl"}
-                      pb={"8px"}
-                    >
-                      <Box display={"flex"} justifyContent={"center"}>
-                        <Image
-                          src={`http://localhost:2000/${item.urlProductImg}`}
-                          position={{ base: "absolute", md: "block" }}
-                          top={{ base: "-10", md: "2.5" }}
-                          w={{
-                            base: "100px",
-                            md: "180px",
-                            lg: "150px",
-                            xl: "180px",
-                            "2xl": "180px",
-                          }}
-                          rounded={{ base: "full", md: "md" }}
-                          h={{
-                            base: "100px",
-                            md: "140px",
-                            xl: "120px",
-                            "2xl": "120px",
-                          }}
-                        />
-                      </Box>
-                      <Box
+              {product
+                .filter((item) => item.isActive)
+                .map((item) => (
+                  <GridItem
+                    as={"Box"}
+                    position={"relative"}
+                    mt={{ base: "0", md: "20px" }}
+                    mb={{ base: "30%", md: "0" }}
+                    display={"flex"}
+                    flexDirection={"column"}
+                    alignItems={"center"}
+                    bg={"white"}
+                    w={{
+                      base: "170px",
+                      md: "200px",
+                      lg: "170px",
+                      xl: "200px",
+                      "2xl": "200px",
+                    }}
+                    pt={{ base: "0", md: "10px" }}
+                    rounded={{ base: "3xl", md: "md" }}
+                    shadow={"2xl"}
+                    pb={"8px"}
+                  >
+                    <Box display={"flex"} justifyContent={"center"}>
+                      <Image
+                        src={`http://localhost:2000/${item.urlProductImg}`}
+                        position={{ base: "absolute", md: "block" }}
+                        top={{ base: "-10", md: "2.5" }}
                         w={{
-                          base: "130px",
+                          base: "100px",
                           md: "180px",
                           lg: "150px",
                           xl: "180px",
                           "2xl": "180px",
                         }}
-                        mt={{ base: "40%", md: "70%" }}
-                        pb={"10px"}
-                        display={"flex"}
-                        flexDirection={"column"}
-                        justifyContent={"start"}
-                      >
-                        <Text fontWeight={"bold"}>{item.productName}</Text>
-                        <Text fontSize={"xs"}>
-                          Our delicious pure beef patty.
-                        </Text>
-                        <Text fontWeight={"bold"} color={"orange"}>
-                          $5.48
-                        </Text>
-                      </Box>
-                    </GridItem>
-                  )
-                )
-              )}
+                        rounded={{ base: "full", md: "md" }}
+                        h={{
+                          base: "100px",
+                          md: "140px",
+                          xl: "120px",
+                          "2xl": "120px",
+                        }}
+                      />
+                    </Box>
+                    <Box
+                      w={{
+                        base: "130px",
+                        md: "180px",
+                        lg: "150px",
+                        xl: "180px",
+                        "2xl": "180px",
+                      }}
+                      mt={{ base: "40%", md: "70%" }}
+                      pb={"10px"}
+                      display={"flex"}
+                      flexDirection={"column"}
+                      justifyContent={"start"}
+                    >
+                      <Text fontWeight={"bold"}>{item.productName}</Text>
+                      <Text fontSize={"md"}>{item.productDescription}</Text>
+                      <Text fontWeight={"bold"} color={"orange"}>
+                        Rp{item.productPrice}
+                      </Text>
+                    </Box>
+                  </GridItem>
+                ))}
             </Grid>
           </Box>
         </Box>

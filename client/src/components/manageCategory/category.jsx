@@ -1,30 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
-import { AiOutlineStar, AiOutlineCoffee } from "react-icons/ai";
-import { CiBurger, CiPizza } from "react-icons/ci";
-import { GiSandwich, GiChickenLeg, GiSausage } from "react-icons/gi";
-import { RiCake3Line } from "react-icons/ri";
 import { Text, Box, Flex } from "@chakra-ui/react";
-
-const iconMap = {
-  Star: <AiOutlineStar />,
-  Coffee: <AiOutlineCoffee />,
-  Burger: <CiBurger />,
-  Sandwich: <GiSandwich />,
-  Pizza: <CiPizza />,
-  Cake: <RiCake3Line />,
-  ChickenLeg: <GiChickenLeg />,
-  Sausage: <GiSausage />,
-};
+import { useNavigate } from "react-router-dom";
 
 export const Category = () => {
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
+
+  const onSelect = (id) => {
+    navigate(`/category/${id}`);
+    window.location.reload();
+  };
 
   const getCategories = async () => {
     try {
       const result = await axios.get(`http://localhost:2000/categories`);
-      console.log(result.data);
       setCategories(result.data);
     } catch (err) {
       console.log(err);
@@ -35,17 +25,22 @@ export const Category = () => {
     getCategories();
   }, []);
   return (
-    <Flex columnGap={"10px"}>
+    <Flex pl={{ base: "48%", md: "11%", xl: "0px" }} columnGap={"5px"}>
       {categories.map((item) => (
-        <Flex key={item.id} mt={"20px"}>
+        <Flex
+          key={item.id}
+          mt={"20px"}
+          onClick={() => onSelect(item.id)}
+          _hover={{ cursor: "pointer" }}
+        >
           <Flex
-            px={"8px"}
+            py={{ base: "0px", xl: "10px" }}
+            px={"6px"}
             rounded={"md"}
-            bg={"pink.100"}
+            bg={"pink.400"}
             alignItems={"center"}
             textAlign={"center"}
           >
-            {iconMap[item.category]}
             <Text>{item.category}</Text>
           </Flex>
         </Flex>

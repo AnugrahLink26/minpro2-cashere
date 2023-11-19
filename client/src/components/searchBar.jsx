@@ -12,8 +12,12 @@ import {
 import { AiOutlineSearch } from "react-icons/ai";
 import { CiFilter } from "react-icons/ci";
 import { NavProfile } from "./navProfile";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-export const SearchBar = () => {
+export const SearchBar = ({ updateProduct }) => {
+  const [search, setSearch] = useState("");
+  const [product, setProduct] = useState([]);
   const profileSize = useBreakpointValue({
     base: "0px",
     sm: "200px",
@@ -21,6 +25,23 @@ export const SearchBar = () => {
     lg: "400px",
     xl: "500px",
   });
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:2000/products/search/${search}`
+      );
+      const searchData = response.data;
+      setProduct(searchData);
+      updateProduct(searchData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    console.log("Product state update", product);
+  }, [product]);
 
   return (
     <Flex
@@ -42,13 +63,21 @@ export const SearchBar = () => {
       />
       <Center>
         <InputGroup>
-          <InputLeftElement pointerEvents="none">
+          <InputLeftElement ml={"10px"} pointerEvents="none">
             <AiOutlineSearch color="gray.300" />
           </InputLeftElement>
           <InputRightElement>
             <CiFilter color="gray.300" />
           </InputRightElement>
-          <Input type="tel" bg={"gray.200"} placeholder="Search menu..." />
+          <Input
+            ml={"10px"}
+            type="tel"
+            bg={"gray.200"}
+            placeholder="Search menu..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+          />
         </InputGroup>
       </Center>
       <Spacer />
