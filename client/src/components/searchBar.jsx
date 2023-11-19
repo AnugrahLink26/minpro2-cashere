@@ -51,7 +51,7 @@ export const SearchBar = () => {
           <Input type="tel" bg={"gray.200"} placeholder="Search menu..." />
         </InputGroup>
       </Center>
-      <Spacer />
+      {/* <Spacer />
       <Flex
         h={"50px"}
         px={"10px"}
@@ -64,7 +64,7 @@ export const SearchBar = () => {
       />
       <Center width={profileSize}>
         <NavProfile />
-      </Center>
+      </Center> */}
     </Flex>
   );
 };

@@ -34,7 +34,6 @@ export function ManageProducts() {
   const finalRef = React.useRef(null);
 
   return (
-    <>
       <SettingsPage />
 
 // Ini yang anugrah
@@ -91,6 +90,5 @@ export function ManageProducts() {
 //           </Center>
 //         </Stack>
 //       </Container>
-    </>
   );
 }

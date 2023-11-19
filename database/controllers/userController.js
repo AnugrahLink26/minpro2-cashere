@@ -2,9 +2,9 @@ const db = require("../models");
 const User = db.Users;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-// const fs = require('fs');
-// const handlebars = require('handlebars');
-// const transporter = require('../middleware/transporter');
+const fs = require('fs');
+const handlebars = require('handlebars');
+const transporter = require('../middleware/transporter');
 
 module.exports = 
 {
@@ -108,6 +108,46 @@ module.exports =
         {
             console.log(error);
             res.status(400).send({ message: error.message })
+        }
+    },
+
+    checkEmail: async (req, res) => 
+    {
+        try 
+        {
+            const { email } = req.body
+            const checkUser = await User.findOne({
+                where: { email }
+            })
+
+            console.log(checkUser);
+
+            if (checkUser != null) {
+                const payload = {
+                    id: checkUser.id
+                }
+    
+                const token = jwt.sign(payload, process.env.TOKEN_KEY)
+    
+                const data = fs.readFileSync('../resetPasswordMail.html', 'utf-8')
+                const tempCompile = await handlebars.compile(data)
+                const tempResult = tempCompile({ email: email, link: `http://localhost:2000/reset-password/${token}` })
+    
+                await transporter.sendMail({
+                    from: 'altairlink26@gmail.com',
+                    to: email,
+                    subject: 'Email Confirmation',
+                    html: tempResult
+                })
+                return res.status(200).send('Email has been Verified')
+            }
+
+            return res.status(400).send('Email is not registered')
+        } 
+        catch (error) 
+        {
+            console.log(error);
+            res.status(400).send({ error: error.message })
         }
     },
 
