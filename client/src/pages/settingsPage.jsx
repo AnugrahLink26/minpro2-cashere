@@ -112,7 +112,7 @@ export const SettingsPage = () => {
       <Box
         display={{ base: "none", md: "block" }}
         px={"6px"}
-        bg={"red"}
+        bg={"white"}
         m={"1rem"}
         pb={"9%"}
         mt={{ md: "26%", xl: "6.9%" }}
